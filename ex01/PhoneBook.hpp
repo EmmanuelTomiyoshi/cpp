@@ -9,7 +9,11 @@ class PhoneBook
 		void    add_contact();
 		void    search_contacts();
 		void    delete_contact();
-		Contact contacts[8];
+	
+	private:
+		static int	_j;
+		static int	_qttcontacts;	
+		Contact _contacts[8];
 };
 
 #endif
