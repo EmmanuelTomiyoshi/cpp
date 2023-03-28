@@ -5,7 +5,7 @@ INC			=	Account.hpp
 OBJ			=	$(SRC:.cpp=.o)
 
 CPP			=	c++
-CPPFLAGS	=	-Wall -Wextra -Werror -std=c++98 -g -pedantic
+CPPFLAGS	=	-Wall -Wextra -Werror -Wno-used -std=c++98 -g -pedantic
 
 VALGRIND	=	valgrind -q --leak-check=full --show-leak-kinds=all
 
