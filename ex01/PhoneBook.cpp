@@ -1,4 +1,6 @@
 #include "PhoneBook.hpp"
+#include <iomanip>
+#include <iostream>
 
 int	PhoneBook::_j = 0;
 int	PhoneBook::_qttcontacts = 0;
@@ -47,4 +49,23 @@ void PhoneBook::add_contact()
 	if (_qttcontacts != 8)
 		_qttcontacts++;
 	PhoneBook::_j += 1;
+}
+
+
+// void print_contacts()
+// {
+
+// }
+
+
+void PhoneBook::search_contacts()
+{
+	if (_qttcontacts == 0)
+	{
+		std::cout << "PhoneBook is Empty. Please add at least 1 contact." << std::endl;
+		return ;
+	}
+	std::cout << "================= CONTACTS ================" << std::endl;
+	std::cout << "     INDEX|FIRST NAME| LAST NAME|  NICKNAME" << std::endl;
+	std::cout << "===========================================" << std::endl;
 }

@@ -3,6 +3,7 @@
 #include "PhoneBook.hpp"
 #include <cstdlib>
 #include <string>
+#include <iomanip>
 
 inline std::string NewPrompt()
 {
@@ -40,19 +41,20 @@ int main(int argc, __attribute__((unused)) char **argv)
 	{
 		std::cout << color_yellow() << "[PhoneBook] " << color_reset() << "Enter command: ";
 		getline(std::cin, cmd);
+		if (std::cin.eof())
+			std::cout << '\n';
 		if (cmd == "ADD")
 			pb.add_contact();
+		if (cmd == "SEARCH")
+			pb.search_contacts();
 		else if (std::cin.eof() || cmd == "EXIT")
-		{
-			std::cout << '\n';
 			break ;
-		}
 		else if (cmd.empty())
 			continue ;
 		else if (cmd == "clear")
 			std::cout << NewPrompt();
 		else
-			std::cout << "\tInvalid command, try again one of the following: ADD, SEARCH, DELETE, EXIT" << std::endl;
+			std::cout << "Invalid command, try again one of the following: ADD, SEARCH, DELETE, EXIT" << std::endl;
 	}
 	std::cout << "There\'s no backup. Contacts are lost forever! =)" << std::endl << "Exiting the program..." << std::endl;
 }
