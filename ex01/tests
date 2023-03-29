@@ -1,0 +1,17 @@
+#include <termios.h>
+#include <unistd.h>
+
+struct termios orig_termios;
+
+void disable_echo() {
+    tcgetattr(STDIN_FILENO, &orig_termios);
+    struct termios raw = orig_termios;
+    raw.c_lflag &= ~(ECHO);
+    tcsetattr(STDIN_FILENO, TCSAFLUSH, &raw);
+}
+
+void enable_echo() {
+    tcsetattr(STDIN_FILENO, TCSAFLUSH, &orig_termios);
+}
+	disable_echo();
+	enable_echo();

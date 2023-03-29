@@ -10,16 +10,6 @@ inline std::string NewPrompt()
 	return "\033[2J\033[1;1H";
 }
 
-bool	check_invalid_args(int *argc)
-{
-	if (*argc > 1)
-	{
-		std::cout << MSG_ERR_INVALID_ARGC << std::endl;
-		return (true);
-	}
-	return (false);
-}
-
 inline std::string color_yellow(void)
 {
 	return "\001\033[0;33m\002";
@@ -30,13 +20,11 @@ inline std::string color_reset(void)
 	return "\001\033[0m\002";
 }
 
-int main(int argc, __attribute__((unused)) char **argv)
+int main()
 {
 	PhoneBook		pb;
 	std::string		cmd;
 
-	if (check_invalid_args(&argc))
-		return (EXIT_FAILURE);
 	while (true)
 	{
 		std::cout << color_yellow() << "[PhoneBook] " << color_reset() << "Enter command: ";
@@ -45,7 +33,7 @@ int main(int argc, __attribute__((unused)) char **argv)
 			std::cout << '\n';
 		if (cmd == "ADD")
 			pb.add_contact();
-		if (cmd == "SEARCH")
+		else if (cmd == "SEARCH")
 			pb.search_contacts();
 		else if (std::cin.eof() || cmd == "EXIT")
 			break ;

@@ -12,7 +12,7 @@ class PhoneBook
 		void    delete_contact();
 	
 	private:
-		static int	_j;
+		static int	_index;
 		static int	_qttcontacts;	
 		Contact _contacts[8];
 };
