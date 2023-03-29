@@ -9,7 +9,6 @@ class PhoneBook
 	public:
 		void    add_contact();
 		void    search_contacts();
-		void    delete_contact();
 	
 	private:
 		static int	_index;

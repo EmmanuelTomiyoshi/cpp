@@ -2,6 +2,9 @@
 #include <iomanip>
 #include <iostream>
 #include <iterator>
+#include <sstream>
+
+#include <stdlib.h> //remove later
 
 int	PhoneBook::_index = 0;
 int	PhoneBook::_qttcontacts = 0;
@@ -73,6 +76,25 @@ void display_header(std::string header)
 	std::cout << std::setfill(' '); //reseting setfill
 }
 
+
+int getIntegerInRange(int min, int max) {
+    int value;
+    while (true) {
+        std::cout << "Enter a number between " << min << " and " << max << ": ";
+        std::string input;
+        std::getline(std::cin, input);
+        std::istringstream stream(input);
+		if (input.empty())
+			continue ;
+        if (!(stream >> value) || (value < min || value > max)) {
+            std::cout << "Invalid input. Please enter a number between " << min << " and " << max << "." << std::endl;
+        }
+        else {
+            return value;
+        }
+    }
+}
+
 void PhoneBook::search_contacts()
 {
 	if (_qttcontacts == 0)
@@ -80,6 +102,7 @@ void PhoneBook::search_contacts()
 		std::cout << "PhoneBook is Empty. Please add at least 1 contact." << std::endl;
 		return ;
 	}
+
 	display_header(" CONTACTS ");
 
 	std::cout << "     INDEX|FIRST NAME| LAST NAME|  NICKNAME" << std::endl;
@@ -91,4 +114,24 @@ void PhoneBook::search_contacts()
 		std::cout << std::setw(10) << format_column(_contacts[i].getNickname()) << std::endl;
 	}
 	std::cout << "===========================================" << std::endl;
+
+
+
+    int userInput = getIntegerInRange(0, PhoneBook::_index - 1); //minus one because index starts at 0, as always
+	display_header(" CONTACTS ");
+    std::cout << "First name: " << _contacts[userInput].getFirstName() << std::endl;
+	std::cout << "Last name: " << _contacts[userInput].getLastName() << std::endl;
+	std::cout << "Nickname: " << _contacts[userInput].getNickname() << std::endl;
+	std::cout << "Phone Number: " << _contacts[userInput].getPhoneNumber() << std::endl;
+	std::cout << "Darkest Secret: " << _contacts[userInput].getDarkestSecret() << std::endl;
+	std::cout << "===========================================" << std::endl;
+
 }
+
+
+		// if (std::cin.eof())
+		// {
+		// 	std::cout << '\n';
+		// 	std::cout << "There\'s no backup. Contacts are lost forever! =)" << std::endl << "Exiting the program..." << std::endl;
+		// 	exit(0);
+		// }
