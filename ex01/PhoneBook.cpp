@@ -1,15 +1,32 @@
 #include "PhoneBook.hpp"
+#include "String.hpp"
 #include <iomanip>
 #include <iostream>
 #include <iterator>
 #include <sstream>
+#include <termios.h>
+#include <unistd.h>
 
 #include <stdlib.h> //remove later
 
 int	PhoneBook::_index = 0;
 int	PhoneBook::_qttcontacts = 0;
 
-void PhoneBook::add_contact()
+// void	hide_darkest_secret(const std::string secret, const std::string input)
+// {
+// 	std::cout << secret;
+//     termios oldt, newt;
+//     tcgetattr(STDIN_FILENO, &oldt);
+//     newt = oldt;
+//     newt.c_lflag &= ~ECHO;
+//     tcsetattr(STDIN_FILENO, TCSANOW, &newt);
+//     // std::string password;
+//     // getline(std::cin, password);
+//     tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
+//     std::cout << "\nPassword entered: " << input << std::endl;
+// }
+
+int PhoneBook::add_contact()
 {
 	std::string	labels[5] = {"First name: ", "Last name: ", "Nickname: ", "Phone number: ", "Darkest secret: "};
 	std::string input;
@@ -22,13 +39,10 @@ void PhoneBook::add_contact()
 		{
 			std::cout << labels[i];
 			std::getline(std::cin, input);
-			if (std::cin.eof())
-			{
-				std::cout << '\n';
-				return ;
-			}
+			if (check_eof() == true)
+				return (0);
 			if (!input.empty())
-				is_input_valid = true;	
+				is_input_valid = true;
 			switch (i)
 			{
 				case 0:
@@ -52,6 +66,7 @@ void PhoneBook::add_contact()
 	if (_qttcontacts != 8)
 		_qttcontacts++;
 	PhoneBook::_index += 1;
+	return (1);
 }
 
 std::string format_column(std::string text)
@@ -84,6 +99,8 @@ int getIntegerInRange(int min, int max) {
         std::string input;
         std::getline(std::cin, input);
         std::istringstream stream(input);
+		if (check_eof() == true)
+			return (-1);
 		if (input.empty())
 			continue ;
         if (!(stream >> value) || (value < min || value > max)) {
@@ -95,12 +112,12 @@ int getIntegerInRange(int min, int max) {
     }
 }
 
-void PhoneBook::search_contacts()
+int PhoneBook::search_contacts()
 {
 	if (_qttcontacts == 0)
 	{
 		std::cout << "PhoneBook is Empty. Please add at least 1 contact." << std::endl;
-		return ;
+		return (1);
 	}
 
 	display_header(" CONTACTS ");
@@ -116,8 +133,9 @@ void PhoneBook::search_contacts()
 	std::cout << "===========================================" << std::endl;
 
 
-
     int userInput = getIntegerInRange(0, PhoneBook::_index - 1); //minus one because index starts at 0, as always
+	if (userInput == -1)
+		return (0);
 	display_header(" CONTACTS ");
     std::cout << "First name: " << _contacts[userInput].getFirstName() << std::endl;
 	std::cout << "Last name: " << _contacts[userInput].getLastName() << std::endl;
@@ -125,13 +143,5 @@ void PhoneBook::search_contacts()
 	std::cout << "Phone Number: " << _contacts[userInput].getPhoneNumber() << std::endl;
 	std::cout << "Darkest Secret: " << _contacts[userInput].getDarkestSecret() << std::endl;
 	std::cout << "===========================================" << std::endl;
-
+	return (1);
 }
-
-
-		// if (std::cin.eof())
-		// {
-		// 	std::cout << '\n';
-		// 	std::cout << "There\'s no backup. Contacts are lost forever! =)" << std::endl << "Exiting the program..." << std::endl;
-		// 	exit(0);
-		// }

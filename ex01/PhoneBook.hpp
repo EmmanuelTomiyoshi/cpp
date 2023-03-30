@@ -7,8 +7,8 @@
 class PhoneBook
 {
 	public:
-		void    add_contact();
-		void    search_contacts();
+		int	add_contact();
+		int	search_contacts();
 	
 	private:
 		static int	_index;

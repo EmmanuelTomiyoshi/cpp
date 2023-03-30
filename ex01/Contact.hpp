@@ -4,8 +4,6 @@
 #include <iostream>
 #include <string>
 
-# define MSG_ERR_INVALID_ARGC "Invalid number of arguments, please only use ./contact"
-
 class Contact{
 
 	public:
