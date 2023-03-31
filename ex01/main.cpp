@@ -30,7 +30,7 @@ int main()
 				break ;
 		}
 		else
-			f.msg_invalid_cmd();
+			f.msg_invalid_input();
 	}
 	f.msg_exiting_program();
 }

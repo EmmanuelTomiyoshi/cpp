@@ -36,9 +36,9 @@ void Format::msg_exiting_program(void)
 	std::cout << "There\'s no backup. Contacts are lost forever! =)" << std::endl << "Exiting the program..." << std::endl;
 }
 
-void Format::msg_invalid_cmd(void)
+void Format::msg_invalid_input(void)
 {
-	std::cout << "Invalid command, try again one of the following: ADD, SEARCH, EXIT" << std::endl;
+	std::cout << "Invalid input, try again one of the following: ADD, SEARCH, EXIT" << std::endl;
 }
 
 std::string Format::column(std::string text)

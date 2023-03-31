@@ -13,7 +13,7 @@ class Format{
 		void display_menu();
 		bool check_eof();
 		void msg_exiting_program(void);
-		void msg_invalid_cmd(void);
+		void msg_invalid_input(void);
 		void display_header(std::string header);
 		std::string column(std::string text);
 		bool whitespaces(std::string input);
