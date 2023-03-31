@@ -6,19 +6,19 @@
 int main()
 {
 	PhoneBook		pb;
-	Format			f;
+	Format			format;
 	std::string		cmd;
 
 	while (true)
 	{
-		f.display_menu();
+		format.display_menu();
 		getline(std::cin, cmd);
-		if (f.check_eof() == true || cmd == "EXIT")
+		if (format.check_eof() == true || cmd == "EXIT")
 			break ;
-		else if (cmd.empty() || f.whitespaces(cmd))
+		else if (cmd.empty() || format.whitespaces(cmd))
 			continue ;
 		else if (cmd == "clear")
-			std::cout << f.NewPrompt();
+			std::cout << format.NewPrompt();
 		else if (cmd == "ADD")
 		{
 			if (!pb.add_contact())
@@ -30,7 +30,7 @@ int main()
 				break ;
 		}
 		else
-			f.msg_invalid_input();
+			format.msg_invalid_input();
 	}
-	f.msg_exiting_program();
+	format.msg_exiting_program();
 }
