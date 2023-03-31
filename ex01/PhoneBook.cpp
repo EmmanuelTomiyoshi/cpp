@@ -3,6 +3,7 @@
 #include "Format.hpp"
 
 int	PhoneBook::_index = 0;
+int PhoneBook::_size = 0;
 int	PhoneBook::_qttcontacts = 0;
 
 std::string hide_darkest_secret()
@@ -104,12 +105,15 @@ int PhoneBook::add_contact()
 	if (_qttcontacts != 8)
 		_qttcontacts++;
 	PhoneBook::_index += 1;
+	if (PhoneBook::_size == 8)
+		;
+	else
+		PhoneBook::_size = PhoneBook::_index;
 	return (1);
 }
 
-int getIntegerInRange(int min) {
+int getIntegerInRange(int min, int max) {
     int value;
-	int max = 7;
 	Format	f;
     while (true) {
         std::cout << "Enter a number between " << min << " and " << max << ": ";
@@ -139,9 +143,11 @@ int PhoneBook::search_contacts()
 	}
 
 	f.display_header(" CONTACTS ");
-
 	std::cout << "     INDEX|FIRST NAME| LAST NAME|  NICKNAME" << std::endl;
-	for (int i = 0; i < 8; i++)
+	
+	if (PhoneBook::_index == 8)
+		PhoneBook::_size = 8;
+	for (int i = 0; i < PhoneBook::_size; i++)
 	{
 		std::cout << std::setw(10) << i << "|";
 		std::cout << std::setw(10) << f.column(_contacts[i].getFirstName()) << "|";
@@ -150,8 +156,7 @@ int PhoneBook::search_contacts()
 	}
 	std::cout << "===========================================" << std::endl;
 
-
-    int userInput = getIntegerInRange(0);
+    int userInput = getIntegerInRange(0, PhoneBook::_size - 1); //minus one because index starts at 0, as always
 	if (userInput == -1)
 		return (0);
 	f.display_header(" CONTACTS ");

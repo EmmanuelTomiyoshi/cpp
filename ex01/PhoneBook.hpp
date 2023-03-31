@@ -13,6 +13,7 @@ class PhoneBook
 	private:
 
 		static int	_index;
+		static int	_size;
 		static int	_qttcontacts;	
 		Contact _contacts[8];
 };

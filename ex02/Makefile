@@ -22,6 +22,7 @@ clean:
 
 fclean: clean
 	rm $(NAME)
+	rm tests.o
 
 re: fclean all
 
