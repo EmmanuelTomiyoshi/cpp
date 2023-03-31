@@ -11,6 +11,7 @@ class Format{
 		std::string color_reset();
 		std::string NewPrompt();
 		void display_menu();
+		void display_prompt();
 		bool check_eof();
 		void msg_exiting_program(void);
 		void msg_invalid_input(void);

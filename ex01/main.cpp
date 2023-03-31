@@ -9,24 +9,25 @@ int main()
 	Format			format;
 	std::string		cmd;
 
+	format.display_menu();
 	while (true)
 	{
-		format.display_menu();
+		format.display_prompt();
 		getline(std::cin, cmd);
-		if (format.check_eof() == true || cmd == "EXIT")
+		if (format.check_eof() == true || cmd == "4")
 			break ;
 		else if (cmd.empty() || format.whitespaces(cmd))
 			continue ;
-		else if (cmd == "clear")
+		else if (cmd == "3")
 			std::cout << format.NewPrompt();
-		else if (cmd == "ADD")
+		else if (cmd == "1")
 		{
-			if (!pb.add_contact())
+			if (pb.add_contact() == false)
 				break ;
 		}
-		else if (cmd == "SEARCH")
+		else if (cmd == "2")
 		{
-			if (!pb.search_contacts())
+			if (pb.search_contacts() == false)
 				break ;
 		}
 		else

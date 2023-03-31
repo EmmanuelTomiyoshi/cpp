@@ -50,7 +50,7 @@ bool validate_field(std::string input, int index) {
 		case 3:
 			return validateInput(input, "0123456789", 7);
 		case 4:
-			return validateInput(input, "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789", 8);
+			return validateInput(input, "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789", 1);
 	}
 	return (true);
 }
@@ -107,8 +107,9 @@ int PhoneBook::add_contact()
 	return (1);
 }
 
-int getIntegerInRange(int min, int max) {
+int getIntegerInRange(int min) {
     int value;
+	int max = 7;
 	Format	f;
     while (true) {
         std::cout << "Enter a number between " << min << " and " << max << ": ";
@@ -140,7 +141,7 @@ int PhoneBook::search_contacts()
 	f.display_header(" CONTACTS ");
 
 	std::cout << "     INDEX|FIRST NAME| LAST NAME|  NICKNAME" << std::endl;
-	for (int i = 0; i < PhoneBook::_index; i++)
+	for (int i = 0; i < 8; i++)
 	{
 		std::cout << std::setw(10) << i << "|";
 		std::cout << std::setw(10) << f.column(_contacts[i].getFirstName()) << "|";
@@ -150,7 +151,7 @@ int PhoneBook::search_contacts()
 	std::cout << "===========================================" << std::endl;
 
 
-    int userInput = getIntegerInRange(0, PhoneBook::_index - 1); //minus one because index starts at 0, as always
+    int userInput = getIntegerInRange(0);
 	if (userInput == -1)
 		return (0);
 	f.display_header(" CONTACTS ");
