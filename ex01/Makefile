@@ -1,7 +1,7 @@
-NAME		=	contact
+NAME		=	phonebook
 
-SRC			=	main.cpp Contact.cpp PhoneBook.cpp
-INC			=	Contact.hpp PhoneBook.hpp
+SRC			=	main.cpp Contact.cpp PhoneBook.cpp Format.cpp
+INC			=	Contact.hpp PhoneBook.hpp Format.hpp
 OBJ			=	$(SRC:.cpp=.o)
 
 CPP			=	c++

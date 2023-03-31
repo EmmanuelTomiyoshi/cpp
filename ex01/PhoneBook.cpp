@@ -1,35 +1,65 @@
+#include "Commons.hpp"
 #include "PhoneBook.hpp"
-#include "String.hpp"
-#include <iomanip>
-#include <iostream>
-#include <iterator>
-#include <sstream>
-#include <termios.h>
-#include <unistd.h>
-
-#include <stdlib.h> //remove later
+#include "Format.hpp"
 
 int	PhoneBook::_index = 0;
 int	PhoneBook::_qttcontacts = 0;
 
-// void	hide_darkest_secret(const std::string secret, const std::string input)
-// {
-// 	std::cout << secret;
-//     termios oldt, newt;
-//     tcgetattr(STDIN_FILENO, &oldt);
-//     newt = oldt;
-//     newt.c_lflag &= ~ECHO;
-//     tcsetattr(STDIN_FILENO, TCSANOW, &newt);
-//     // std::string password;
-//     // getline(std::cin, password);
-//     tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
-//     std::cout << "\nPassword entered: " << input << std::endl;
-// }
+std::string hide_darkest_secret()
+{
+    termios oldt, newt;
+    tcgetattr(STDIN_FILENO, &oldt);
+    newt = oldt;
+    newt.c_lflag &= ~ECHO;
+    tcsetattr(STDIN_FILENO, TCSANOW, &newt);
+    std::string secret;
+    getline(std::cin, secret);
+	std::cout << std::endl;
+    tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
+	return (secret);
+}
+
+bool validateInput(std::string input, const std::string allowedChars, unsigned int minLenght) {
+
+	if (input.length() < minLenght)
+	{
+		std::cout << "Input lenght must be at least: " << minLenght << std::endl;
+		return false;
+	}
+	for (unsigned int i = 0; i < input.length(); i++)
+	{
+		if (allowedChars.find_first_of(input[i]) == std::string::npos)
+		{
+			std::cout << "Input invalid characters. Try again" << std::endl;
+			return false;
+		}
+	}
+	return true;
+}
+
+bool validate_field(std::string input, int index) {
+
+	switch (index)
+	{
+		case 0:
+			return validateInput(input, "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ,.-\'", 3);
+		case 1:
+			return validateInput(input, "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ,.-\'", 3);
+		case 2:
+			return validateInput(input, "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789", 3);
+		case 3:
+			return validateInput(input, "0123456789", 7);
+		case 4:
+			return validateInput(input, "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789", 8);
+	}
+	return (true);
+}
 
 int PhoneBook::add_contact()
 {
-	std::string	labels[5] = {"First name: ", "Last name: ", "Nickname: ", "Phone number: ", "Darkest secret: "};
+	std::string	labels[5] = {"First name: ", "Last name: ", "Nickname: ", "Phone number (do not use \"()\" or \"+\" or \"-\"): ", "Darkest secret: "};
 	std::string input;
+	Format	f;
 	for (int i = 0; i < 5; i++)
 	{
 		bool is_input_valid = false;
@@ -38,11 +68,19 @@ int PhoneBook::add_contact()
 		while (!is_input_valid)
 		{
 			std::cout << labels[i];
-			std::getline(std::cin, input);
-			if (check_eof() == true)
+			if (i == 4)
+				input = hide_darkest_secret();
+			else
+				std::getline(std::cin, input);
+			if (f.check_eof() == true)
 				return (0);
 			if (!input.empty())
 				is_input_valid = true;
+			if (validate_field(input, i) == false)
+			{
+				is_input_valid = false;
+				continue ;
+			}
 			switch (i)
 			{
 				case 0:
@@ -69,37 +107,15 @@ int PhoneBook::add_contact()
 	return (1);
 }
 
-std::string format_column(std::string text)
-{
-	if (text.length() > 10)
-	{
-		text.resize(9);
-		text.append(".");
-	}
-	return (text);
-}
-
-void display_header(std::string header)
-{
-    int width = 43;
-
-    int padding = width - header.length();
-    int left_padding = padding/2;
-    int right_padding = padding - left_padding;
-
-    std::cout << std::setfill('=') << std::setw(left_padding) << "" << header << std::setw(right_padding) << "" << std::endl;
-	std::cout << std::setfill(' '); //reseting setfill
-}
-
-
 int getIntegerInRange(int min, int max) {
     int value;
+	Format	f;
     while (true) {
         std::cout << "Enter a number between " << min << " and " << max << ": ";
         std::string input;
         std::getline(std::cin, input);
         std::istringstream stream(input);
-		if (check_eof() == true)
+		if (f.check_eof() == true)
 			return (-1);
 		if (input.empty())
 			continue ;
@@ -114,21 +130,22 @@ int getIntegerInRange(int min, int max) {
 
 int PhoneBook::search_contacts()
 {
+	Format	f;
 	if (_qttcontacts == 0)
 	{
 		std::cout << "PhoneBook is Empty. Please add at least 1 contact." << std::endl;
 		return (1);
 	}
 
-	display_header(" CONTACTS ");
+	f.display_header(" CONTACTS ");
 
 	std::cout << "     INDEX|FIRST NAME| LAST NAME|  NICKNAME" << std::endl;
 	for (int i = 0; i < PhoneBook::_index; i++)
 	{
 		std::cout << std::setw(10) << i << "|";
-		std::cout << std::setw(10) << format_column(_contacts[i].getFirstName()) << "|";
-		std::cout << std::setw(10) << format_column(_contacts[i].getLastName()) << "|";
-		std::cout << std::setw(10) << format_column(_contacts[i].getNickname()) << std::endl;
+		std::cout << std::setw(10) << f.column(_contacts[i].getFirstName()) << "|";
+		std::cout << std::setw(10) << f.column(_contacts[i].getLastName()) << "|";
+		std::cout << std::setw(10) << f.column(_contacts[i].getNickname()) << std::endl;
 	}
 	std::cout << "===========================================" << std::endl;
 
@@ -136,7 +153,7 @@ int PhoneBook::search_contacts()
     int userInput = getIntegerInRange(0, PhoneBook::_index - 1); //minus one because index starts at 0, as always
 	if (userInput == -1)
 		return (0);
-	display_header(" CONTACTS ");
+	f.display_header(" CONTACTS ");
     std::cout << "First name: " << _contacts[userInput].getFirstName() << std::endl;
 	std::cout << "Last name: " << _contacts[userInput].getLastName() << std::endl;
 	std::cout << "Nickname: " << _contacts[userInput].getNickname() << std::endl;

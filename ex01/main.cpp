@@ -1,26 +1,24 @@
 
-#include "Contact.hpp"
+#include "Commons.hpp"
+#include "Format.hpp"
 #include "PhoneBook.hpp"
-#include "String.hpp"
-#include <cstdlib>
-#include <string>
-#include <iomanip>
 
 int main()
 {
 	PhoneBook		pb;
+	Format			f;
 	std::string		cmd;
 
 	while (true)
 	{
-		display_menu();
+		f.display_menu();
 		getline(std::cin, cmd);
-		if (check_eof() == true || cmd == "EXIT")
+		if (f.check_eof() == true || cmd == "EXIT")
 			break ;
-		else if (cmd.empty())
+		else if (cmd.empty() || f.whitespaces(cmd))
 			continue ;
 		else if (cmd == "clear")
-			std::cout << NewPrompt();
+			std::cout << f.NewPrompt();
 		else if (cmd == "ADD")
 		{
 			if (!pb.add_contact())
@@ -32,7 +30,7 @@ int main()
 				break ;
 		}
 		else
-			msg_invalid_cmd();
+			f.msg_invalid_cmd();
 	}
-	msg_exiting_program();
+	f.msg_exiting_program();
 }
