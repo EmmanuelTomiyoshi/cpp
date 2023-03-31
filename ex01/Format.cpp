@@ -19,15 +19,15 @@ std::string Format::color_reset()
 void Format::display_menu()
 {
 	std::cout << std::endl;
-	std::cout << "\001\033[0;30m\002    ________________________   ________________________" << std::endl;
+	std::cout << "    ________________________   ________________________" << std::endl;
 	std::cout << ".-/|                        \\ /                        |\\-." << std::endl;
 	std::cout << "||||                         |                         ||||" << std::endl;
-	std::cout << "||||    Welcome to           |   \001\033[0;97m\002MENU:\001\033[0;30m\002                 ||||" << std::endl;
+	std::cout << "||||    Welcome to           |   \001\033[0;94m\002MENU:\001\033[0m\002                 ||||" << std::endl;
 	std::cout << "||||    my awesome           |                         ||||" << std::endl;
-	std::cout << "||||    PhoneBook!           |   \001\033[0;94m\002(1)\001\033[0;30m\002 ADD CONTACT       ||||" << std::endl;
-	std::cout << "||||                         |   \001\033[0;94m\002(2)\001\033[0;30m\002 SEARCH CONTACTS   ||||" << std::endl;
-	std::cout << "||||    --==*==--            |   \001\033[0;94m\002(3)\001\033[0;30m\002 CLEAR SCREEN      ||||" << std::endl;
-	std::cout << "||||                         |   \001\033[0;94m\002(4)\001\033[0;30m\002 EXIT              ||||" << std::endl;
+	std::cout << "||||    PhoneBook!           |   \001\033[0;94m\002(1)\001\033[0m\002 ADD CONTACT       ||||" << std::endl;
+	std::cout << "||||                         |   \001\033[0;94m\002(2)\001\033[0m\002 SEARCH CONTACTS   ||||" << std::endl;
+	std::cout << "||||    --==*==--            |   \001\033[0;94m\002(3)\001\033[0m\002 CLEAR SCREEN      ||||" << std::endl;
+	std::cout << "||||                         |   \001\033[0;94m\002(4)\001\033[0m\002 EXIT              ||||" << std::endl;
 	std::cout << "||||    Project made         |                         ||||" << std::endl;
 	std::cout << "||||    by: etomiyos         |                         ||||" << std::endl;
 	std::cout << "||||                         |                         ||||" << std::endl;
@@ -60,7 +60,7 @@ void Format::msg_exiting_program(void)
 
 void Format::msg_invalid_input(void)
 {
-	std::cout << "Invalid input, try again one of the following: ADD, SEARCH, EXIT" << std::endl;
+	std::cout << "Invalid input, try again one of the following:" << std:: endl << "(1) ADD | (2) SEARCH | (3) CLEAR | (4) EXIT" << std::endl;
 }
 
 std::string Format::column(std::string text)
