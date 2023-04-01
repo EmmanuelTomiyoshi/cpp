@@ -19,7 +19,10 @@ int main()
 		else if (cmd.empty() || format.whitespaces(cmd))
 			continue ;
 		else if (cmd == "3")
+		{
 			std::cout << format.NewPrompt();
+			format.display_menu();
+		}
 		else if (cmd == "1")
 		{
 			if (pb.add_contact() == false)

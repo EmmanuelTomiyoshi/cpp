@@ -43,15 +43,15 @@ bool validate_field(std::string input, int index) {
 	switch (index)
 	{
 		case 0:
-			return validateInput(input, "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ,.-\'", 3);
+			return validateInput(input, "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ,.-\' ", 3);
 		case 1:
-			return validateInput(input, "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ,.-\'", 3);
+			return validateInput(input, "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ,.-\' ", 3);
 		case 2:
 			return validateInput(input, "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789", 3);
 		case 3:
-			return validateInput(input, "0123456789", 7);
+			return validateInput(input, "0123456789", 3);
 		case 4:
-			return validateInput(input, "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789", 1);
+			return validateInput(input, "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 ", 1);
 	}
 	return (true);
 }
