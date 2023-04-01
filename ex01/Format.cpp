@@ -1,5 +1,7 @@
 #include "Commons.hpp"
 #include "Format.hpp"
+#include "PhoneBook.hpp"
+#include <fstream>
 
 std::string Format::color_yellow(void)
 {
@@ -45,9 +47,11 @@ void Format::display_prompt()
 
 bool Format::check_eof()
 {
+	PhoneBook pb;
+
 	if (std::cin.eof())
 	{
-		std::cout << '\n';
+		std::cout << std::endl;
 		return (true);
 	}
 	return (false);
@@ -83,6 +87,32 @@ void Format::display_header(std::string header)
 
     std::cout << std::setfill('=') << std::setw(left_padding) << "" << header << std::setw(right_padding) << "" << std::endl;
 	std::cout << std::setfill(' '); //reseting setfill
+}
+
+void PhoneBook::save_contacts()
+{
+	std::fstream backup;
+
+	backup.open("backup.txt", std::ios::out);
+	if (!backup)
+		std::cout << "Always have at least 2 backups of your data";
+
+	backup << "The subject won\'t allow me to do this, but here\'s your backup" << std::endl
+		   << "(Next time, plan your backups!!)" << std::endl << std::endl;
+
+	if (_size == 0)
+		backup << "There were no contacts saved";
+
+	for (int i = 0; i < _size; i++)
+	{
+		backup << std::endl << "[" << i << "]" << std::endl;
+		backup << "First name: " << _contacts[i].getFirstName() << std::endl;
+		backup << "Last name: " << _contacts[i].getLastName() << std::endl;
+		backup << "Nickname: " << _contacts[i].getNickname() << std::endl;
+		backup << "Phone Number: " << _contacts[i].getPhoneNumber() << std::endl;
+		backup << "Darkest Secret: " << _contacts[i].getDarkestSecret() << std::endl;
+	}
+	backup.close();
 }
 
 bool Format::whitespaces(std::string input)

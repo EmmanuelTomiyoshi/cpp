@@ -10,5 +10,6 @@
 #include <sstream>
 #include <termios.h>
 #include <unistd.h>
+#include <fstream>
 
 #endif

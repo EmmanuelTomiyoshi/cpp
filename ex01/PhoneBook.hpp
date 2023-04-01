@@ -9,6 +9,7 @@ class PhoneBook
 
 		int	add_contact();
 		int	search_contacts();
+		void save_contacts();
 	
 	private:
 

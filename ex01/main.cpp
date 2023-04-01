@@ -36,5 +36,6 @@ int main()
 		else
 			format.msg_invalid_input();
 	}
+	pb.save_contacts();
 	format.msg_exiting_program();
 }
