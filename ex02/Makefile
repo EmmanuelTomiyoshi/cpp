@@ -1,6 +1,6 @@
 NAME		=	account
 
-SRC			=	main.cpp Account.cpp
+SRC			=	Account.cpp tests.cpp
 INC			=	Account.hpp
 OBJ			=	$(SRC:.cpp=.o)
 
@@ -18,15 +18,20 @@ $(NAME): $(OBJ)
 	$(CPP) $(CPPFLAGS) $(OBJ) -o $(NAME)
 
 clean:
-	rm $(OBJ)
+	$(RM) $(OBJ)
 
 fclean: clean
-	rm $(NAME)
-	rm tests.o
+	$(RM) $(NAME)
+	$(RM) *.txt
 
 re: fclean all
 
 leaks: ./$(NAME)
 	$(VALGRIND) ./$(NAME)
+
+compare: ./$(NAME)
+	cat 19920104_091532.log | cut -d ' ' -f 2 > log.txt
+	./account | cut -d ' ' -f 2 > output.txt
+	diff log.txt output.txt
 
 .PHONY: all clean fclean re leaks
