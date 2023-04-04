@@ -37,8 +37,8 @@ void	Account::_displayTimestamp(void)
 
 }
 
-void	Account::displayAccountsInfos( void ) {
-
+void	Account::displayAccountsInfos( void ) { 
+	std::cout << "index:0" << std::endl;
 }
 
 void	Account::makeDeposit( int deposit ) {
