@@ -1,5 +1,5 @@
 CC			=	g++
-CPPFLAGS	=	-Wall -Wextra -Werror -Wno-used -std=c++98 -g -pedantic
+CPPFLAGS	=	-Wall -Wextra -Werror -std=c++98 -g -pedantic
 
 all: megaphone
 

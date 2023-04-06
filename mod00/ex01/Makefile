@@ -1,11 +1,11 @@
-NAME		=	account
+NAME		=	phonebook
 
-SRC			=	Account.cpp tests.cpp
-INC			=	Account.hpp
+SRC			=	main.cpp Contact.cpp PhoneBook.cpp Format.cpp
+INC			=	Contact.hpp PhoneBook.hpp Format.hpp
 OBJ			=	$(SRC:.cpp=.o)
 
 CPP			=	c++
-CPPFLAGS	=	-Wall -Wextra -Werror -Wno-used -std=c++98 -g -pedantic
+CPPFLAGS	=	-Wall -Wextra -Werror -std=c++98 -g -pedantic
 
 VALGRIND	=	valgrind -q --leak-check=full --show-leak-kinds=all
 
@@ -18,20 +18,14 @@ $(NAME): $(OBJ)
 	$(CPP) $(CPPFLAGS) $(OBJ) -o $(NAME)
 
 clean:
-	$(RM) $(OBJ)
+	rm $(OBJ)
+	rm $(NAME)
 
 fclean: clean
-	$(RM) $(NAME)
-	$(RM) *.txt
 
 re: fclean all
 
 leaks: ./$(NAME)
 	$(VALGRIND) ./$(NAME)
-
-compare: ./$(NAME)
-	cat 19920104_091532.log | cut -d ' ' -f 2 > log.txt
-	./account | cut -d ' ' -f 2 > output.txt
-	diff log.txt output.txt
 
 .PHONY: all clean fclean re leaks
