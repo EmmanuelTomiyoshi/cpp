@@ -1,6 +1,9 @@
-#include <iostream>
+#include "Zombie.hpp"
 
 int main(void)
 {
-	std::cout << "Hello world!\n";
+	Zombie* z = newZombie("Fred");
+	z->announce();
+	randomChump("Orange");
+	delete z;
 }
