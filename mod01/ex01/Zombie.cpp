@@ -6,6 +6,11 @@ Zombie::Zombie(std::string name)
 	this->name = name;
 }
 
+Zombie::Zombie()
+{
+
+}
+
 void Zombie::announce(void)
 {
 	std::cout << this->name << ": BraiiiiiiinnnzzzZ..." << std::endl;
@@ -14,6 +19,8 @@ void Zombie::announce(void)
 //destructor
 Zombie::~Zombie()
 {
-	std::cout << "(Destroying Zombie) " << this->name << std::endl;
+	static int count = 0;
+	std::cout	<< "(Destroying Zombie) " << this->name
+				<< " [" << count++ << "]" << std::endl;
 }
 
