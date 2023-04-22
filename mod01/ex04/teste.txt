@@ -1,0 +1,16 @@
+Os testes automáticos são essenciais em programação,
+especialmente em linguagens como C/C++. Eles ajudam
+a detectar erros e garantir a qualidade do código.
+
+Testar é fundamental para melhorar a confiabilidade
+de qualquer sistema, e é por isso que é importante
+testar continuamente à medida que o código é
+desenvolvido. Não há limite para quantas vezes o
+teste deve ser executado, quanto mais testes, melhor.
+
+Testar o código é o caminho para garantir a qualidade,
+portanto, não subestime a importância dos testes.
+Em resumo, escrever testes é uma prática fundamental
+na programação, e a palavra "teste" deve ser vista
+como uma aliada. Então, teste, teste e teste novamente
+para ter um código mais robusto e confiável.

@@ -4,7 +4,7 @@ void HumanB::attack(void) const
 {
 	std::cout << _name;
 	if (_weapon)
-		std::cout << "attacks with their " << _weapon->getType() << std::endl;
+		std::cout << " attacks with their " << _weapon->getType() << std::endl;
 	else
 	 	std::cout << " is unarmed" << std::endl;
 }
