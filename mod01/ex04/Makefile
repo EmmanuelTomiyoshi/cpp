@@ -3,7 +3,8 @@ NAME = sed_is_for_losers
 SRC = main.cpp
 
 CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -g
+# CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -g
+CXXFLAGS = -std=c++98 -g
 CPPFLAGS = -MMD -MP
 BUILD_DIR = build
 
@@ -29,6 +30,8 @@ clean:
 
 fclean: clean
 	$(RM) *.out $(NAME)
+	$(RM) *.replace
+	$(RM) *.log
 
 re: fclean all
 
