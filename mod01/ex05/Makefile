@@ -31,6 +31,7 @@ fclean: clean
 	$(RM) *.out $(NAME)
 	$(RM) *.replace
 	$(RM) *.log
+	$(RM) -rf $(BUILD_DIR)
 
 re: fclean all
 

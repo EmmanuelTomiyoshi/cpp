@@ -29,6 +29,7 @@ clean:
 
 fclean: clean
 	$(RM) *.out $(NAME)
+	$(RM) -rf $(BUILD_DIR)
 
 re: fclean all
 
