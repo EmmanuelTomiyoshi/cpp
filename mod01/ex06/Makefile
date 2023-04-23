@@ -1,6 +1,6 @@
-NAME = sed_is_for_losers
+NAME = harlFilter
 
-SRC = main.cpp
+SRC = main.cpp Harl.cpp
 
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -g
@@ -40,6 +40,11 @@ run: $(NAME)
 leaks: $(NAME)
 	$(VALGRIND) ./$(NAME)
 
+debug: CXXFLAGS = -std=c++98 -g
+debug: all
+
+redebug: fclean debug
+
 -include $(DEP)
 
-.PHONY: all clean fclean rerun leaks
+.PHONY: all clean fclean rerun leaks debug redebug

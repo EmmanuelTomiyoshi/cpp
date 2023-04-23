@@ -9,6 +9,7 @@ void replace(std::ifstream &file, std::ofstream &output, std::string original, s
 		output << file.rdbuf();
 		return;
 	}
+
 	std::string line;
 
 	while (!file.eof())
@@ -21,6 +22,7 @@ void replace(std::ifstream &file, std::ofstream &output, std::string original, s
 			line.insert(pos, toreplace);
 			pos += toreplace.size();
 		}
+
 		output << line;
 
 		if (!file.eof())	//check if it is the last line of the file
