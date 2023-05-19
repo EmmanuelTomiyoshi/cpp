@@ -3,10 +3,9 @@
 const int Fixed::_numFractionalBits = 8;
 
 //default constructor
-Fixed::Fixed( void )
+Fixed::Fixed( void ) : _fixedPoint(0)
 {
 	std::cout << "Default constructor called" << std::endl;
-	this->_fixedPoint = 0;
 }
 
 //copy constructor
@@ -19,11 +18,11 @@ Fixed::Fixed(const Fixed &copy)
 }
 
 //copy assignment operator overload
-Fixed&Fixed::operator=(const Fixed &t)
+Fixed&Fixed::operator=(const Fixed &copy)
 {
 	std::cout << "Copy assignment operator called" << std::endl;
-	if (this != &t)
-		this->setRawBits(t.getRawBits());
+	if (this != &copy)
+		this->setRawBits(copy.getRawBits());
 	return *this;
 }
 
@@ -33,6 +32,7 @@ Fixed::~Fixed()
 	std::cout << "Destructor called" << std::endl;
 }
 
+//getters and setters
 int Fixed::getRawBits(void) const
 {
 	std::cout << "getRawBits member function called" << std::endl;

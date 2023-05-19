@@ -1,16 +1,16 @@
-NAME = fixed_point
+NAME 		= bsp
 
-SRC = main.cpp Fixed.cpp
+SRC 		= main.cpp Fixed.cpp Point.cpp bsp.cpp drawtriangle.cpp
 
-CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -g
-CPPFLAGS = -MMD -MP
-BUILD_DIR = build
+CXX 		= c++
+CXXFLAGS 	= -Wall -Wextra -Werror -std=c++98 -g
+CPPFLAGS 	= -MMD -MP
+BUILD_DIR 	= build
 
-OBJ = $(addprefix $(BUILD_DIR)/, $(SRC:.cpp=.o))
-DEP = $(addprefix $(BUILD_DIR)/, $(SRC:.cpp=.d))
+OBJ 		= $(addprefix $(BUILD_DIR)/, $(SRC:.cpp=.o))
+DEP 		= $(addprefix $(BUILD_DIR)/, $(SRC:.cpp=.d))
 
-VALGRIND = valgrind -q --leak-check=full --show-leak-kinds=all
+VALGRIND 	= valgrind -q --leak-check=full --show-leak-kinds=all
 
 all: $(NAME)
 
@@ -29,7 +29,6 @@ clean:
 fclean: clean
 	$(RM) *.out $(NAME)
 	$(RM) -rf $(BUILD_DIR)
-	$(RM) output
 
 re: fclean all
 
@@ -39,9 +38,6 @@ run: $(NAME)
 leaks: $(NAME)
 	$(VALGRIND) ./$(NAME)
 
-test: $(NAME)
-	./fixed_point > output ; diff output subject.txt
-
 debug: CXXFLAGS = -std=c++98 -g
 debug: all
 
@@ -49,4 +45,4 @@ redebug: fclean debug
 
 -include $(DEP)
 
-.PHONY: all clean fclean rerun leaks debug redebug test
+.PHONY: all clean fclean rerun leaks debug redebug
