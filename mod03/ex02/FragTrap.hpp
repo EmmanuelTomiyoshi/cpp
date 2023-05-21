@@ -2,10 +2,10 @@
 #define EX02_FRAGTRAP_HPP
 
 #include "colors.hpp"
-#include "ScavTrap.hpp"
+#include "ClapTrap.hpp"
 #include <iostream>
 
-class FragTrap : public ClapTrap
+class FragTrap : public ClapTrap //explicit says it is inheriting public of ClapTrap
 {
 	
 	public:

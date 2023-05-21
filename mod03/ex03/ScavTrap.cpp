@@ -65,7 +65,8 @@ void ScavTrap::attack(const std::string &target)
 		return ;
 	}
 	std::cout << "[ScavTrap] " << _color << _name <<
-	COLOR_RESET << " attacks " << target << ", causing " << _attackDamage
+	COLOR_RESET << " attacks " << target << ", causing" << COLOR_BHWHITE
+	<< " AWESOME " << COLOR_RESET << _attackDamage * 2
 	<< " points of damage." << std::endl;
 
 	_energyPoints--;
@@ -82,6 +83,10 @@ void ScavTrap::guardGate(void)
 
 ScavTrap::~ScavTrap(void)
 {
-	std::cout << "[ScavTrap] " << _color << _name
-	<< COLOR_RESET << " has left the game" << std::endl;
+	std::cout << "[ScavTrap] " << _color << _name << COLOR_RESET;
+	if (isDead())
+		std::cout << " is dead";
+	else
+		std::cout << " has left the game";
+	std::cout << std::endl;
 }

@@ -86,6 +86,10 @@ ScavTrap::~ScavTrap(void)
 		std::cout << std::endl;
 		new_line++;
 	}
-	std::cout << "[ScavTrap] " << _color << _name
-	<< COLOR_RESET << " has left the game" << std::endl;
+	std::cout << "[ScavTrap] " << _color << _name << COLOR_RESET;
+	if (isDead())
+		std::cout << " is dead";
+	else
+		std::cout << " has left the game";
+	std::cout << std::endl;
 }

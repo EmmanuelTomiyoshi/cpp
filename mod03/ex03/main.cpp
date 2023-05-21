@@ -71,7 +71,7 @@ int main(void)
 
 	//Here's the diamond problem
 	{
-		std::cout << std::endl << COLOR_BHWHITE << "DIAMON PROBLEM" << COLOR_RESET << std::endl;
+		std::cout << std::endl << COLOR_BHWHITE << "DIAMOND PROBLEM" << COLOR_RESET << std::endl;
 		MaryAnne.attack("Hector \"copy\" clone"); //attack is from ScavTrap
 		Clone.takeDamage(20);
 		MaryAnne.attack("Hector \"copy\" clone");

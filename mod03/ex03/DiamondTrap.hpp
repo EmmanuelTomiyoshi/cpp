@@ -5,6 +5,7 @@
 #include "FragTrap.hpp"
 #include <iostream>
 
+//inherits from both, since each of them is declared as virtual
 class DiamondTrap : public ScavTrap, public FragTrap
 {
 	public:
@@ -17,18 +18,18 @@ class DiamondTrap : public ScavTrap, public FragTrap
 		~DiamondTrap(void);
 
 		void whoAmI(void);
-		using ScavTrap::attack;
+		using ScavTrap::attack; //using because of the ambiguity, since we already have
+								//a public attack() on the superclasses Scav, Frag, and Clap
 
 		std::ostream&operator<<(std::ostream& os);
 
 	protected:
 		using FragTrap::_hitPoints;		//"using" for when the variable has the same name,
-		using FragTrap::_attackDamage;  //because it could lead to ambiguity. But, anyways,
-		using ScavTrap::_energyPoints;  //you can't access it without this clearly "using".
+		using FragTrap::_attackDamage;  //because it could lead to ambiguity.
+		using ScavTrap::_energyPoints;
 
 	private:
 		std::string _name;
-
 };
 
 std::ostream& operator<<(std::ostream& os, const DiamondTrap& obj);

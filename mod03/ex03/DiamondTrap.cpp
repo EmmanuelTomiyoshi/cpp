@@ -1,6 +1,6 @@
 #include "DiamondTrap.hpp"
 
-DiamondTrap::DiamondTrap(void) : ClapTrap(), ScavTrap(), FragTrap(), _name("none")
+DiamondTrap::DiamondTrap(void) : ClapTrap(), ScavTrap(), FragTrap(), _name("lemur")
 {
 	std::cout << "[DiamondTrap] Default constructor has been called" << std::endl;
 	_hitPoints = FragTrap::_hitPoints;
@@ -9,9 +9,10 @@ DiamondTrap::DiamondTrap(void) : ClapTrap(), ScavTrap(), FragTrap(), _name("none
 	_doubleDamage = FragTrap::_doubleDamage;
 }
 
-DiamondTrap::DiamondTrap(const std::string &name) : ClapTrap(name + "_clap_name"), ScavTrap(), FragTrap(), _name(name)
+DiamondTrap::DiamondTrap(const std::string &name) : ClapTrap(name + "_clap_name"),
+ScavTrap(), FragTrap(), _name(name)
 {
-	ClapTrap::_name = name + "_clap_name";
+	ClapTrap::_name = name + "_clap_name"; //name of ClapTrap is according to the subject requirements
 	_hitPoints = FragTrap::_hitPoints;
 	_energyPoints = ScavTrap::_energyPoints;
 	_attackDamage = FragTrap::_attackDamage;
@@ -54,11 +55,6 @@ DiamondTrap&DiamondTrap::operator=(const DiamondTrap &copy)
 	return *this;
 }
 
-// void DiamondTrap::attack(const std::string &target)
-// {
-// 	ClapTrap::attack(target);
-// }
-
 void DiamondTrap::whoAmI(void)
 {
 	std::cout << "[DiamondTrap] I am: " << _color << _name << COLOR_RESET
@@ -75,6 +71,10 @@ DiamondTrap::~DiamondTrap(void)
 		std::cout << std::endl;
 		new_line++;
 	}
-	std::cout << "[DiamondTrap] " << _color << _name
-	<< COLOR_RESET << " has left the game" << std::endl;
+	std::cout << "[DiamondTrap] " << _color << _name << COLOR_RESET;
+	if (isDead())
+		std::cout << " is dead";
+	else
+		std::cout << " has left the game";
+	std::cout << std::endl;
 }

@@ -68,6 +68,7 @@ void FragTrap::attack(const std::string &target)
 	COLOR_RESET << " attacks " << target << ", causing " << _attackDamage
 	<< " points of damage." << std::endl;
 
+	_doubleDamage = true;
 	_energyPoints--;
 }
 
@@ -87,6 +88,10 @@ void FragTrap::highFivesGuys(void)
 
 FragTrap::~FragTrap(void)
 {
-	std::cout << "[FragTrap] " << _color << _name
-	<< COLOR_RESET << " has left the game" << std::endl;
+	std::cout << "[FragTrap] " << _color << _name << COLOR_RESET;
+	if (isDead())
+		std::cout << " is dead";
+	else
+		std::cout << " has left the game";
+	std::cout << std::endl;
 }

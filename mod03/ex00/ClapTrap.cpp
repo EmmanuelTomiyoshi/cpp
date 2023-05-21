@@ -9,7 +9,7 @@ ClapTrap::ClapTrap(const std::string &name) : _name(name),
 _hitPoints(10), _energyPoints(10), _attackDamage(0)
 {
 	_name.at(0) = std::toupper(_name.at(0));
-	std::cout << "[ClapTrap] Constructor of " << _name << " has been called!" << std::endl;
+	std::cout << "[ClapTrap] Constructor of " << _name << " has been called." << std::endl;
 }
 
 ClapTrap::ClapTrap(const std::string &name, const std::string &color, unsigned int const hp,
@@ -165,6 +165,10 @@ ClapTrap::~ClapTrap(void)
 		std::cout << std::endl;
 		new_line++;
 	}
-	std::cout << "[ClapTrap] " << _color << _name
-	<< COLOR_RESET << " has left the game" << std::endl;
+	std::cout << "[ClapTrap] " << _color << _name << COLOR_RESET;
+	if (isDead())
+		std::cout << " is dead";
+	else
+		std::cout << " has left the game";
+	std::cout << std::endl;
 }
