@@ -13,7 +13,7 @@ int main(void)
 	Point a(1, 5);
 	Point b(5, 1);
 	Point c(9, 5);
-	Point point(5, 4);
+	Point point(8, 5);
 
 	std::cout << std::endl;
 
