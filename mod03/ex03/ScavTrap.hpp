@@ -5,7 +5,7 @@
 #include "ClapTrap.hpp"
 #include <iostream>
 
-class ScavTrap : public ClapTrap //explicit says it is inheriting public of ClapTrap
+class ScavTrap : virtual public ClapTrap
 {
 	
 	public:
@@ -17,7 +17,7 @@ class ScavTrap : public ClapTrap //explicit says it is inheriting public of Clap
 		ScavTrap&operator=(const ScavTrap &copy);
 		~ScavTrap(void);
 
-		void attack(const std::string &target);
+		virtual void attack(const std::string &target);
 		void guardGate(void);
 
 		std::ostream&operator<<(std::ostream& os);

@@ -6,7 +6,7 @@ ClapTrap::ClapTrap(void)
 }
 
 ClapTrap::ClapTrap(const std::string &name) : _name(name),
-_hitPoints(10), _energyPoints(10), _attackDamage(0)
+_hitPoints(10), _energyPoints(10), _attackDamage(0), _doubleDamage(false)
 {
 	this->_name.at(0) = std::toupper(this->_name.at(0));
 	std::cout << "[ClapTrap] Constructor of " << this->_name << " has been called!" << std::endl;
@@ -14,7 +14,7 @@ _hitPoints(10), _energyPoints(10), _attackDamage(0)
 
 ClapTrap::ClapTrap(const std::string &name, const std::string &color, unsigned int const hp,
 unsigned int const ep, unsigned int const ad) : _name(name), _color(color),
-_hitPoints(hp), _energyPoints(ep), _attackDamage(ad)
+_hitPoints(hp), _energyPoints(ep), _attackDamage(ad), _doubleDamage(false)
 {
 	this->_name.at(0) = std::toupper(this->_name.at(0));
 
@@ -38,6 +38,7 @@ ClapTrap&ClapTrap::operator=(const ClapTrap &copy)
 		this->_hitPoints = copy._hitPoints;
 		this->_energyPoints = copy._energyPoints;
 		this->_attackDamage = copy._attackDamage;
+		this->_doubleDamage = copy._doubleDamage;
 	}
 	return *this;
 }
@@ -47,9 +48,19 @@ std::string ClapTrap::getName(void) const
 	return this->_name;
 }
 
+std::string ClapTrap::getColor(void) const
+{
+	return this->_color;
+}
+
 void ClapTrap::setName(const std::string &name)
 {
 	this->_name = name;
+}
+
+void ClapTrap::setColor(const std::string &color)
+{
+	this->_color = color;
 }
 
 void ClapTrap::attack(const std::string &target)
@@ -77,6 +88,11 @@ void ClapTrap::takeDamage(unsigned int amount)
 		return ;
 
 	std::cout << "[ClapTrap] " << this->_color << this->_name << COLOR_RESET;
+
+	if (_doubleDamage)
+	{
+		amount *= 2;
+	}
 
 	if (amount == 0)
 	{
@@ -141,6 +157,11 @@ int ClapTrap::getAttackDamage(void) const
 	return this->_attackDamage;
 }
 
+bool ClapTrap::getDoubleDamage(void) const
+{
+	return this->_doubleDamage;
+}
+
 void ClapTrap::setHitPoints(const unsigned int hp)
 {
 	this->_hitPoints = hp;
@@ -154,6 +175,11 @@ void ClapTrap::setEnergyPoints(const unsigned int ep)
 void ClapTrap::setAttackDamage(const unsigned int ad)
 {
 	this->_attackDamage = ad;
+}
+
+void ClapTrap::setDoubleDamage(const bool dd)
+{
+	this->_doubleDamage = dd;
 }
 
 ClapTrap::~ClapTrap(void)
