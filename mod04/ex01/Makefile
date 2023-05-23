@@ -1,10 +1,10 @@
 NAME 		=	animalBrain
 
 SRC 		=	main.cpp Animal.cpp Dog.cpp Cat.cpp Brain.cpp WrongCat.cpp	\
-				WrongAnimal.cpp formatAnimalSound.cpp 
+				WrongAnimal.cpp formatAnimal.cpp readAnimalNames.cpp
 
 CXX 		=	c++
-CXXFLAGS 	=	-Wall -Wextra -std=c++98 -g
+CXXFLAGS 	=	-Wall -Wextra -Werror -std=c++98 -g
 CPPFLAGS 	=	-MMD -MP
 BUILD_DIR 	=	build
 

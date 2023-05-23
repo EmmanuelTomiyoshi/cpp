@@ -2,6 +2,7 @@
 #define EX01_ANIMAL_HPP
 
 #include <iostream>
+#include <fstream>
 #include "colors.hpp"
 
 #define SHOW_DEFAULT_MESSAGES 0
@@ -30,5 +31,7 @@ class Animal {
 
 std::ostream &operator<<(std::ostream& os, const Animal& animal);
 void formatAnimalSound(const Animal *animal);
+void formatAnimalCharacter(const Animal *animal);
+std::string *readAnimalNames(const std::string &filename, const unsigned int count);
 
 #endif // EX01_ANIMAL_HPP

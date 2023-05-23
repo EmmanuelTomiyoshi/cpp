@@ -14,3 +14,11 @@ void formatAnimalSound(const WrongAnimal *animal)
 	animal->makeSound();
 	std::cout << std::endl;
 }
+
+void formatAnimalCharacter(const Animal *animal)
+{
+	std::cout << animal->getName() << " the "
+	<< animal->getType() << " says ";
+	animal->makeSound();
+	std::cout << std::endl;
+}

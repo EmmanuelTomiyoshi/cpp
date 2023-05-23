@@ -27,40 +27,67 @@ void update_progress_bar(const int progress, const std::string &animal)
 
 int main(void)
 {
-
 	// subject test
 	{
-		const	Animal *animal[100];
-		int		progress = 0;
+		const		Animal *animal[100];
+		const		unsigned int count = 50;
+		std::string *catNames = readAnimalNames("catNames.txt", 50);
+		std::string *dogNames = readAnimalNames("dogNames.txt", 50);
 
-		for (int i = 0; i < 100; ++i)
+		if (catNames == 0 || dogNames == 0)
+			return 1;
+
+		int	progress = 0;
+		for (unsigned int i = 0; i < 100; ++i)
 		{
-			if (progress == 50) //reset the countdown for other animal object
+			if (progress == count) //reset the countdown for other animal object
 			{
 				progress = 0;
 				std::cout << std::endl;
 			}
-			if (i > 50)
+
+			if (i > count)
 			{
-				animal[i] = new Dog("Scooby-Doo");
-				++progress;
-				update_progress_bar(progress + 1, animal[i]->getType());
+				if (i - count < count)
+				{
+					animal[i] = new Dog(dogNames[i - count]);
+					++progress;
+					update_progress_bar(progress, animal[i]->getType());
+				}
+				else
+				{
+					animal[i] = new Dog("Pluto"); //default name if out of range
+					++progress;
+					update_progress_bar(progress, animal[i]->getType());
+				}
 			}
 			else
 			{
-				animal[i] = new Cat("Garfield");
-				++progress;
-				update_progress_bar(progress, animal[i]->getType());
+				if (i < count)
+				{
+					animal[i] = new Cat(catNames[i]);
+					++progress;
+					update_progress_bar(progress, animal[i]->getType());
+				}
+				else
+				{
+					animal[i] = new Cat("Pandora");
+					++progress;
+					update_progress_bar(progress, animal[i]->getType());
+				}
 			}
 		}
 
 		std::cout << COLOR_RESET << std::endl; //because the last output was green
 
-		for (int i = 0; i < 100; i++)
+		formatAnimalCharacter(animal[15]);
+		formatAnimalCharacter(animal[23]);
+		formatAnimalCharacter(animal[31]);
+
+		for (unsigned int i = 0; i < 100; ++i)
 			delete animal[i];
-		
-		// std::cout << animal[60]->getName() << std::endl;
-		// std::cout << animal[60]->getType() << std::endl;
-		// animal[60]->makeSound();
+
+		delete [] catNames;
+		delete [] dogNames;
 	}
 }
