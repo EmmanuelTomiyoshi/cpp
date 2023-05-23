@@ -6,7 +6,7 @@ Animal::Animal(void)
 	name = "Animalia";
 	if (SHOW_DEFAULT_MESSAGES)
 	{
-		std::cout << COLOR_BHGREEN << "[Animal]" << COLOR_RESET
+		std::cout << COLOR_BHMAGENTA << "[Animal]" << COLOR_RESET
 		<< " default constructor called" << std::endl;
 	}
 }
@@ -30,7 +30,7 @@ Animal::~Animal(void)
 {
 	if (SHOW_DEFAULT_MESSAGES)
 	{
-		std::cout << COLOR_BHGREEN << "[Animal]" << COLOR_RESET
+		std::cout << COLOR_BHMAGENTA << "[Animal]" << COLOR_RESET
 		<< " default destructor called" << std::endl;
 	}
 }

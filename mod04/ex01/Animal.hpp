@@ -1,10 +1,10 @@
-#ifndef EX00_ANIMAL_HPP
-#define EX00_ANIMAL_HPP
+#ifndef EX01_ANIMAL_HPP
+#define EX01_ANIMAL_HPP
 
 #include <iostream>
 #include "colors.hpp"
 
-#define SHOW_DEFAULT_MESSAGES true
+#define SHOW_DEFAULT_MESSAGES 0
 
 class Animal {
 	
@@ -31,4 +31,4 @@ class Animal {
 std::ostream &operator<<(std::ostream& os, const Animal& animal);
 void formatAnimalSound(const Animal *animal);
 
-#endif // EX00_ANIMAL_HPP
+#endif // EX01_ANIMAL_HPP
