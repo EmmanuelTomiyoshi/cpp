@@ -17,7 +17,7 @@ AMateria&AMateria::operator=(const AMateria &copy)
 {
 	if (this != &copy)
 	{
-		_type = copy._type;
+		//while assigning a Materia to another, copying the type doesn't make sense
 	}
 	return *this;
 }

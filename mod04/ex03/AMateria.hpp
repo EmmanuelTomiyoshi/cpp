@@ -7,13 +7,13 @@
 
 #define SHOW_DEFAULT_MESSAGES 0
 
-class AMateria {
-	
+class AMateria
+{
 	public:
 		AMateria(void);
 		AMateria(const AMateria &copy);
 		AMateria&operator=(const AMateria &copy);
-		~AMateria(void);
+		virtual ~AMateria(void);
 
 		AMateria(std::string const &type);
 
@@ -21,7 +21,7 @@ class AMateria {
 		void setType(const std::string &type);
 
 		virtual AMateria *clone() const = 0;
-		virtual void use(ICharacter &target);
+		virtual void use(ICharacter &target) = 0;
 
 		std::ostream&operator<<(std::ostream &os);
 

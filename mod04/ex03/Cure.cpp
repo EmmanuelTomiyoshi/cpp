@@ -16,6 +16,7 @@ Cure::Cure(const Cure &copy) : AMateria()
 	{
 		std::cout << COLOR_BHYELLOW << "[Cure]" << COLOR_RESET
 		<< " copy constructor called" << std::endl;
+		_type = "cure";
 	}
 	*this = copy;
 }
@@ -45,10 +46,10 @@ Cure::~Cure(void)
 
 AMateria *Cure::clone(void) const  
 {
-	return new Cure();
+	return new Cure(*this); //will copy this Cure
 }
 
 void Cure::use(ICharacter &target)
 {
-	std::cout << "* heals " << target.getName() << "\'s wounds *";
+	std::cout << "* heals " << target.getName() << "\'s wounds *" << std::endl;
 }

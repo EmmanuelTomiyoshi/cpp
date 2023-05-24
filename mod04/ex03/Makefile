@@ -1,6 +1,7 @@
 NAME 		=	materia
 
-SRC 		=	main.cpp AMateria.cpp Cure.cpp Ice.cpp
+SRC 		=	main.cpp AMateria.cpp Cure.cpp Ice.cpp Character.cpp \
+				MateriaSource.cpp
 
 CXX 		=	c++
 CXXFLAGS 	=	-Wall -Wextra -Werror -std=c++98 -g

@@ -16,6 +16,7 @@ Ice::Ice(const Ice &copy) : AMateria()
 	{
 		std::cout << COLOR_BHBLUE << "[Ice]" << COLOR_RESET
 		<< " copy constructor called" << std::endl;
+		_type = "ice";
 	}
 	*this = copy;
 }
@@ -45,10 +46,11 @@ Ice::~Ice(void)
 
 AMateria *Ice::clone(void) const  
 {
-	return new Ice();
+	return new Ice(*this); //will copy this Ice
 }
 
 void Ice::use(ICharacter &target)
 {
-	std::cout << "* shoots an ice bolt at " << target.getName() << " *";
+	std::cout << "* shoots an ice bolt at " << target.getName() << " *"
+	<< std::endl;
 }
