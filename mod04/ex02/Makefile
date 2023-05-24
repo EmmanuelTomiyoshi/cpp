@@ -1,6 +1,6 @@
 NAME 		=	animalBrain
 
-SRC 		=	main.cpp Animal.cpp Dog.cpp Cat.cpp Brain.cpp WrongCat.cpp	\
+SRC 		=	main.cpp AAnimal.cpp Dog.cpp Cat.cpp Brain.cpp WrongCat.cpp	\
 				WrongAnimal.cpp formatAnimal.cpp readAnimalNames.cpp		\
 				updateProgressBar.cpp
 

@@ -1,5 +1,5 @@
-#ifndef EX01_ANIMAL_HPP
-#define EX01_ANIMAL_HPP
+#ifndef EX02_ANIMAL_HPP
+#define EX02_ANIMAL_HPP
 
 #include <iostream>
 #include <fstream>
@@ -16,7 +16,7 @@ class Animal {
 		Animal&operator=(const Animal &copy);
 		virtual ~Animal(void);
 
-		virtual void makeSound(void) const;
+		virtual void makeSound(void) const = 0;
 
 		std::string getType(void) const;
 		std::string getName(void) const;
@@ -36,4 +36,4 @@ void formatAnimalCharacter(const Animal *animal);
 std::string *readAnimalNames(const std::string &filename, const unsigned int count);
 void update_progress_bar(const int progress, const std::string &animal);
 
-#endif // EX01_ANIMAL_HPP
+#endif // EX02_ANIMAL_HPP

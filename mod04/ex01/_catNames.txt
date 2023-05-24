@@ -34,7 +34,6 @@ Tobias
 Gigi
 Jimmy
 Valentina
- 
 Whisky
 Gaia
 Valentim
@@ -47,10 +46,5 @@ Pingo
 Pérola
 Gato
 Amélie
-
-    
-
-
-	
 Bento
 Pitanga

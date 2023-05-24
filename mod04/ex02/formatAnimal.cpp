@@ -1,0 +1,24 @@
+#include "AAnimal.hpp"
+#include "WrongAnimal.hpp"
+
+void formatAnimalSound(const Animal *animal)
+{
+	std::cout << animal->getType() << " goes ";
+	animal->makeSound();
+	std::cout << std::endl;
+}
+
+void formatAnimalSound(const WrongAnimal *animal)
+{
+	std::cout << animal->getType() << " goes ";
+	animal->makeSound();
+	std::cout << std::endl;
+}
+
+void formatAnimalCharacter(const Animal *animal)
+{
+	std::cout << animal->getName() << " the "
+	<< animal->getType() << " says ";
+	animal->makeSound();
+	std::cout << std::endl;
+}
