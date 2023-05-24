@@ -1,5 +1,5 @@
-#ifndef EX02_ANIMAL_HPP
-#define EX02_ANIMAL_HPP
+#ifndef EX02_AANIMAL_HPP
+#define EX02_AANIMAL_HPP
 
 #include <iostream>
 #include <fstream>
@@ -36,4 +36,4 @@ void formatAnimalCharacter(const Animal *animal);
 std::string *readAnimalNames(const std::string &filename, const unsigned int count);
 void update_progress_bar(const int progress, const std::string &animal);
 
-#endif // EX02_ANIMAL_HPP
+#endif // EX02_AANIMAL_HPP
