@@ -55,10 +55,7 @@ Bureaucrat::Bureaucrat(const std::string &name, const unsigned short grade) : _n
 	{
 		std::cout << "[Bureaucrat] name/grade constructor called" << std::endl;
 	}
-
-	checkGrade(grade);
-	
-	_grade = grade; //if all went well, the grade is then assigned
+	setGrade(grade);
 }
 
 std::string Bureaucrat::getName(void) const
@@ -77,14 +74,14 @@ void Bureaucrat::setGrade(const unsigned short grade)
 	_grade = grade;
 }
 
-void Bureaucrat::incrementGrade(Bureaucrat &b)
+void Bureaucrat::incrementGrade(void)
 {
-	setGrade(b._grade--);
+	setGrade(_grade - 1);
 }
 
-void Bureaucrat::decrementGrade(Bureaucrat &b)
+void Bureaucrat::decrementGrade(void)
 {
-	setGrade(b._grade++);
+	setGrade(_grade + 1);
 }
 
 std::ostream &operator<<(std::ostream &os, const Bureaucrat &Bureaucrat)

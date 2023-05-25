@@ -99,21 +99,60 @@ int main ()
 		}
 	}
 
-	std::cout << std::endl;
+	std::cout << std::endl << COLOR_BHWHITE << "TESTS WITH INCREMENT/DECREMENT" << COLOR_RESET << std::endl;
 
-	Bureaucrat Louis("Louis", 50);
-	Bureaucrat Brandon("Brandon");
-	Bureaucrat MaryAnne("Marry Anne", 1);
-	Bureaucrat Melissa("Melissa", 3);
-	Bureaucrat Paola("Paola", 34);
+	{
+		Bureaucrat Louis("Louis", 50);
+		Bureaucrat Brandon("Brandon");
+		Bureaucrat MaryAnne("Marry Anne", 1);
+		Bureaucrat Melissa("Melissa", 3);
+		Bureaucrat Paola("Paola", 34);
 
-	std::cout << Louis << Brandon << MaryAnne << Melissa << Paola;
+		std::cout << std::endl << Louis << Brandon << MaryAnne << Melissa << Paola;
 
-	Louis.checkGrade(Louis.getGrade());
-	Brandon.decrementGrade(Brandon);
-	MaryAnne.incrementGrade(MaryAnne);
-	Melissa.incrementGrade(Melissa);
-	Paola.decrementGrade(Paola);
+		try
+		{
+			Louis.checkGrade(Louis.getGrade());
+		}
+		catch (std::exception &e)
+		{
+			std::cout << e.what() << std::endl;
+		}
 
-	std::cout << Louis << Brandon << MaryAnne << Melissa << Paola;
+		try
+		{
+			Brandon.decrementGrade();		//too low (151)
+		}
+		catch (std::exception &e)
+		{
+			std::cout << e.what() << std::endl;
+		}
+
+		try
+		{
+			MaryAnne.incrementGrade();		//too high (0)
+		}
+		catch (std::exception &e)
+		{
+			std::cout << e.what() << std::endl;
+		}
+
+		try
+		{
+			Melissa.incrementGrade();
+		}
+		catch (std::exception &e)
+		{
+			std::cout << e.what() << std::endl;
+		}
+
+		try
+		{
+			Paola.decrementGrade();
+		}
+		catch (std::exception &e)
+		{
+			std::cout << e.what() << std::endl;
+		}
+	}
 }

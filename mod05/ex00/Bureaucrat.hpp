@@ -24,8 +24,8 @@ class Bureaucrat {
 		unsigned short	getGrade(void) const;
 		void			setGrade(const unsigned short grade);
 
-		void	incrementGrade(Bureaucrat &b);
-		void	decrementGrade(Bureaucrat &b);
+		void	incrementGrade(void);
+		void	decrementGrade(void);
 
 		std::ostream&operator<<(std::ostream &os);
 
