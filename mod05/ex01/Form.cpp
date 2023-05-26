@@ -81,12 +81,12 @@ bool Form::getIsSigned(void) const
 	return _isSigned;
 }
 
-unsigned short Form::getRequiredGradeToExecute(void) const
+size_t Form::getRequiredGradeToExecute(void) const
 {
 	return _requiredGradeToExecute;
 }
 
-unsigned short Form::getRequiredGradeToSign(void) const
+size_t Form::getRequiredGradeToSign(void) const
 {
 	return _requiredGradeToSign;
 }

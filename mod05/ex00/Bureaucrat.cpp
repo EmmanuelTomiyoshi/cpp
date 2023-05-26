@@ -1,7 +1,9 @@
 #include "Bureaucrat.hpp"
 
-const unsigned short Bureaucrat::_highestPossibleGrade = 1;
-const unsigned short Bureaucrat::_lowestPossibleGrade = 150;
+const size_t Bureaucrat::_highestPossibleGrade = 1;
+const size_t Bureaucrat::_lowestPossibleGrade = 150;
+const size_t Bureaucrat::_formatNameWidth = 20;
+const size_t Bureaucrat::_formatGradeWidth = 10;
 
 Bureaucrat::Bureaucrat(void) : _name("bureaucrat"), _grade(_lowestPossibleGrade)
 {
@@ -49,7 +51,7 @@ Bureaucrat::Bureaucrat(const std::string &name) : _name(name), _grade(_lowestPos
 	}
 }
 
-Bureaucrat::Bureaucrat(const std::string &name, const unsigned short grade) : _name(name)
+Bureaucrat::Bureaucrat(const std::string &name, const size_t grade) : _name(name)
 {
 	if (SHOW_DEFAULT_MESSAGES)
 	{
@@ -63,12 +65,12 @@ std::string Bureaucrat::getName(void) const
 	return _name;
 }
 
-unsigned short Bureaucrat::getGrade(void) const
+size_t Bureaucrat::getGrade(void) const
 {
 	return _grade;
 }
 
-void Bureaucrat::setGrade(const unsigned short grade)
+void Bureaucrat::setGrade(const size_t grade)
 {
 	checkGrade(grade);
 	_grade = grade;
@@ -84,13 +86,32 @@ void Bureaucrat::decrementGrade(void)
 	setGrade(_grade + 1);
 }
 
+void Bureaucrat::formatTable(void)
+{
+	std::cout << std::setfill(' ');
+	std::cout << std::left << std::setw(_formatNameWidth) << _name;
+	std::cout << " | ";
+	std::cout << std::right << std::setw(_formatGradeWidth) << _grade << std::endl;
+}
+
+void Bureaucrat::formatTableHeader(void)
+{
+	std::cout << std::left << std::setw(_formatNameWidth) << "Name";
+	std::cout << " | ";
+	std::cout << std::right << std::setw(_formatGradeWidth) << "Grade" << std::endl;
+
+	std::cout << std::setfill('-') << std::setw(_formatNameWidth) << "";
+	std::cout << " + ";
+	std::cout << std::setw(_formatGradeWidth) << "" << std::endl;
+}
+
 std::ostream &operator<<(std::ostream &os, const Bureaucrat &Bureaucrat)
 {
 	os << Bureaucrat.getName() << ", bureaucrat grade is " << Bureaucrat.getGrade() << std::endl;
 	return os;
 }
 
-void Bureaucrat::checkGrade(const unsigned short grade)
+void Bureaucrat::checkGrade(const size_t grade)
 {
 	if (grade < _highestPossibleGrade)
 		throw GradeTooHighException(*this);

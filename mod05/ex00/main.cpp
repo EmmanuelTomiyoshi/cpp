@@ -81,7 +81,7 @@ int main ()
 		try
 		{
 			Bureaucrat b("Larry", -8);
-			//if you do this to an unsigned short, you'll get an overflow...
+			//if you do this to an size_t, you'll get an overflow...
 		}
 		catch (std::exception &e)
 		{
@@ -102,13 +102,49 @@ int main ()
 	std::cout << std::endl << COLOR_BHWHITE << "TESTS WITH INCREMENT/DECREMENT" << COLOR_RESET << std::endl;
 
 	{
+		Bureaucrat MaryAnne("Marry Anne", 1);
+		Bureaucrat Albert("Albert", 3);
+		Bureaucrat Paola("Paola", 34);
 		Bureaucrat Louis("Louis", 50);
 		Bureaucrat Brandon("Brandon");
-		Bureaucrat MaryAnne("Marry Anne", 1);
-		Bureaucrat Melissa("Melissa", 3);
-		Bureaucrat Paola("Paola", 34);
+		Bureaucrat standard;		//just for the Table Header
 
-		std::cout << Louis << Brandon << MaryAnne << Melissa << Paola;
+		std::cout << std::endl;
+
+		standard.formatTableHeader();
+
+		MaryAnne.formatTable();
+		Albert.formatTable();
+		Paola.formatTable();
+		Louis.formatTable();
+		Brandon.formatTable();
+
+		try
+		{
+			MaryAnne.incrementGrade();		//too high (0)
+		}
+		catch (std::exception &e)
+		{
+			std::cout << e.what() << std::endl;
+		}
+
+		try
+		{
+			Albert.incrementGrade();
+		}
+		catch (std::exception &e)
+		{
+			std::cout << e.what() << std::endl;
+		}
+
+		try
+		{
+			Paola.decrementGrade();
+		}
+		catch (std::exception &e)
+		{
+			std::cout << e.what() << std::endl;
+		}
 
 		try
 		{
@@ -128,31 +164,6 @@ int main ()
 			std::cout << e.what() << std::endl;
 		}
 
-		try
-		{
-			MaryAnne.incrementGrade();		//too high (0)
-		}
-		catch (std::exception &e)
-		{
-			std::cout << e.what() << std::endl;
-		}
-
-		try
-		{
-			Melissa.incrementGrade();
-		}
-		catch (std::exception &e)
-		{
-			std::cout << e.what() << std::endl;
-		}
-
-		try
-		{
-			Paola.decrementGrade();
-		}
-		catch (std::exception &e)
-		{
-			std::cout << e.what() << std::endl;
-		}
+		std::cout << std::endl;
 	}
 }

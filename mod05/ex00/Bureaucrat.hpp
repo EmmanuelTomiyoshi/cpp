@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <stdexcept>
+#include <iomanip>
 #include <cstdlib>
 #include "colors.hpp"
 
@@ -17,19 +18,25 @@ class Bureaucrat {
 		~Bureaucrat(void);
 
 		Bureaucrat(const std::string &name);
-		Bureaucrat(const std::string &name, const unsigned short grade);
+		Bureaucrat(const std::string &name, const size_t grade);
 		
-		std::string		getName(void) const;
-		unsigned short	getGrade(void) const;
-		void			setGrade(const unsigned short grade);
+		std::string			getName(void) const;
+		size_t				getGrade(void) const;
+		void				setGrade(const size_t grade);
 
-		void			incrementGrade(void);
-		void			decrementGrade(void);
+		void				incrementGrade(void);
+		void				decrementGrade(void);
+
+		//this whole prints functions could be a separated class, that inherits
+		//from Bureaucrat. It would be the best practice, but for now let's
+		//stick with this manner
+		void				formatTable(void);
+		void				formatTableHeader(void);
 
 		std::ostream&operator<<(std::ostream &os);
 
 		//exceptions
-		void 			checkGrade(const unsigned short grade); //where the exceptions are verified
+		void 				checkGrade(const size_t grade); //where the exceptions are verified
 
 		class GradeTooHighException: public std::exception
 		{
@@ -61,12 +68,14 @@ class Bureaucrat {
 				std::string			errorMessage;
 		};
 
+		static const size_t _highestPossibleGrade;
+		static const size_t _lowestPossibleGrade;
+		static const size_t	_formatNameWidth;
+		static const size_t	_formatGradeWidth;
+
 	private:
 		const std::string	_name;
-		unsigned short		_grade;
-
-		static const unsigned short _highestPossibleGrade;
-		static const unsigned short _lowestPossibleGrade;
+		size_t				_grade;
 };
 
 std::ostream &operator<<(std::ostream& os, const Bureaucrat& bureaucrat);

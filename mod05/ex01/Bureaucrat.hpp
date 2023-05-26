@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <stdexcept>
+#include <iomanip>
 #include <cstdlib>
 #include "colors.hpp"
 #include "Form.hpp"
@@ -19,21 +20,24 @@ class Bureaucrat {
 		~Bureaucrat(void);
 
 		Bureaucrat(const std::string &name);
-		Bureaucrat(const std::string &name, const unsigned short grade);
+		Bureaucrat(const std::string &name, const size_t grade);
 		
 		std::string		getName(void) const;
-		unsigned short	getGrade(void) const;
-		void			setGrade(const unsigned short grade);
+		size_t			getGrade(void) const;
+		void			setGrade(const size_t grade);
 
 		void			incrementGrade(void);
 		void			decrementGrade(void);
+
+		void			formatTable(void);
+		void			formatTableHeader(void);
 
 		void			signForm(Form &form);
 
 		std::ostream&operator<<(std::ostream &os);
 
 		//exceptions
-		void 			checkGrade(const unsigned short grade); //where the exceptions are verified
+		void 			checkGrade(const size_t grade); //where the exceptions are verified
 
 		class GradeTooHighException: public std::exception
 		{
@@ -65,12 +69,14 @@ class Bureaucrat {
 				std::string			errorMessage;
 		};
 
-		static const unsigned short _highestPossibleGrade;
-		static const unsigned short _lowestPossibleGrade;
+		static const size_t _highestPossibleGrade;
+		static const size_t _lowestPossibleGrade;
+		static const size_t	_formatNameWidth;
+		static const size_t	_formatGradeWidth;
 
 	private:
 		const std::string	_name;
-		unsigned short		_grade;
+		size_t				_grade;
 };
 
 std::ostream &operator<<(std::ostream& os, const Bureaucrat& bureaucrat);
