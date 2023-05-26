@@ -108,17 +108,17 @@ std::ostream &operator<<(std::ostream &os, const Bureaucrat &Bureaucrat)
 void Bureaucrat::checkGrade(const unsigned short grade)
 {
 	if (grade < _highestPossibleGrade)
-		throw GradeTooHighException();
+		throw GradeTooHighException(*this);
 	if (grade > _lowestPossibleGrade)
-		throw GradeTooLowException();
+		throw GradeTooLowException(*this);
 }
 
 const char *Bureaucrat::GradeTooHighException::what() const throw()
 {
-	return "Error: exception: Grade is too high";
+	return errorMessage.c_str();
 }
 
 const char *Bureaucrat::GradeTooLowException::what() const throw()
 {
-	return "Error: exception: Grade is too low";
+	return errorMessage.c_str();
 }

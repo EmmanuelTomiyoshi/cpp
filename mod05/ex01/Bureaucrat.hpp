@@ -25,26 +25,44 @@ class Bureaucrat {
 		unsigned short	getGrade(void) const;
 		void			setGrade(const unsigned short grade);
 
-		void	incrementGrade(void);
-		void	decrementGrade(void);
+		void			incrementGrade(void);
+		void			decrementGrade(void);
 
-		void	signForm(Form &form);
+		void			signForm(Form &form);
 
 		std::ostream&operator<<(std::ostream &os);
 
 		//exceptions
-		void checkGrade(const unsigned short grade); //where the exceptions are verified
+		void 			checkGrade(const unsigned short grade); //where the exceptions are verified
 
 		class GradeTooHighException: public std::exception
 		{
 			public:
+				virtual ~GradeTooHighException() throw() {} //it's a best practice to include a destructor in the
+															//derived class with the same exception specification of
+															//the super class (in this case, std::exception)
+				GradeTooHighException(const Bureaucrat &b) : bureaucrat(b)
+				{
+					errorMessage = "Error: exception: " + bureaucrat.getName() + "\'s grade is too high";
+				}
 				virtual const char *what() const throw();
+			private:
+				const Bureaucrat&	bureaucrat;
+				std::string			errorMessage;
 		};
 
 		class GradeTooLowException: public std::exception
 		{
 			public:
+				virtual ~GradeTooLowException() throw() {}
+				GradeTooLowException(const Bureaucrat &b) : bureaucrat(b)
+				{
+					errorMessage = "Error: exception: " + bureaucrat.getName() + "\'s grade is too low";
+				}
 				virtual const char *what() const throw();
+			private:
+				const Bureaucrat&	bureaucrat;
+				std::string			errorMessage;
 		};
 
 		static const unsigned short _highestPossibleGrade;

@@ -26,7 +26,7 @@ int main ()
 
 		try
 		{
-			Bureaucrat c("Bob", 1);
+			Bureaucrat c("Natalia", 1);
 		}
 		catch (std::exception &e)
 		{
@@ -35,7 +35,7 @@ int main ()
 
 		try
 		{
-			Bureaucrat d;
+			Bureaucrat d;	//still, doesn't need a try catch because we're not setting the grade
 		}
 		catch (std::exception &e)
 		{
@@ -44,7 +44,7 @@ int main ()
 
 		try
 		{
-			Bureaucrat f("fred");
+			Bureaucrat f("Fred"); //nor this one
 		}
 		catch (std::exception &e)
 		{
@@ -71,7 +71,7 @@ int main ()
 	{
 		try
 		{
-			Bureaucrat a("Simon", 152);
+			Bureaucrat a("John", 152);
 		}
 		catch (std::exception &e)
 		{
@@ -86,7 +86,7 @@ int main ()
 		catch (std::exception &e)
 		{
 			std::cout << e.what() << std::endl;
-			//...so it will raise a grade is too low exception (USHORT_MAX = 65532)
+			//...so it will raise a "grade is too low" exception (USHORT_MAX = 65532)
 		}
 
 		try
@@ -108,7 +108,7 @@ int main ()
 		Bureaucrat Melissa("Melissa", 3);
 		Bureaucrat Paola("Paola", 34);
 
-		std::cout << std::endl << Louis << Brandon << MaryAnne << Melissa << Paola;
+		std::cout << Louis << Brandon << MaryAnne << Melissa << Paola;
 
 		try
 		{
