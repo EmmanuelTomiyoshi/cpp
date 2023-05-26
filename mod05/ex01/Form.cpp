@@ -2,7 +2,7 @@
 #include "Bureaucrat.hpp"
 
 Form::Form(void) :
-_name("document"), _isSigned(0),
+_name("Standard form"), _isSigned(false),
 _requiredGradeToExecute(Bureaucrat::_lowestPossibleGrade),
 _requiredGradeToSign(Bureaucrat::_lowestPossibleGrade)
 {
@@ -13,7 +13,7 @@ _requiredGradeToSign(Bureaucrat::_lowestPossibleGrade)
 }
 
 Form::Form(const Form &copy) :
-_name("document"), _isSigned(0),
+_name("Standard form"), _isSigned(false),
 _requiredGradeToExecute(Bureaucrat::_lowestPossibleGrade),
 _requiredGradeToSign(Bureaucrat::_lowestPossibleGrade)
 {
@@ -24,7 +24,7 @@ _requiredGradeToSign(Bureaucrat::_lowestPossibleGrade)
 	*this = copy;
 }
 
-Form&Form::operator=(const Form &) //has no name because there isn't something to copy
+Form&Form::operator=(const Form &) //has no copy because there isn't something to
 {
 	if (SHOW_DEFAULT_MESSAGES)
 	{
@@ -54,7 +54,7 @@ _requiredGradeToSign(Bureaucrat::_lowestPossibleGrade)
 }
 
 Form::Form(const std::string &name, const unsigned &gradeToSign, const unsigned &gradeToExecute)
-: _name(name), _requiredGradeToExecute(gradeToExecute), _requiredGradeToSign(gradeToSign)
+: _name(name), _isSigned(false), _requiredGradeToExecute(gradeToExecute), _requiredGradeToSign(gradeToSign)
 {
 	if (SHOW_DEFAULT_MESSAGES)
 	{
@@ -99,26 +99,26 @@ void Form::beSigned(const Bureaucrat &b)
 		throw GradeTooLowException();
 }
 
-std::ostream &operator<<(std::ostream &os, const Form &Form)
+std::ostream &operator<<(std::ostream &os, const Form &form)
 {
 	std::string	text;
-	if (Form.getIsSigned())
-		text = " is signed.";
+	if (form.getIsSigned())
+		text = " is signed";
 	else
-		text = " is not signed.";
+		text = " is not signed";
 
-	os << "Form: " << Form.getName() << text << std::endl;
-	os << "Required grade to sign: " << Form.getRequiredGradeToSign() << std::endl;
-	os << "Required grade to execute: " << Form.getRequiredGradeToExecute() << std::endl;
+	os << form.getName() << text << std::endl;
+	os << "Required grade to sign: " << form.getRequiredGradeToSign() << std::endl;
+	os << "Required grade to execute: " << form.getRequiredGradeToExecute() << std::endl << std::endl;
 	return os;
 }
 
 const char *Form::GradeTooHighException::what() const throw()
 {
-	return "Error: exception: Grade is too high";
+	return "grade is too high";
 }
 
 const char *Form::GradeTooLowException::what() const throw()
 {
-	return "Error: exception: Grade is too low";
+	return "grade is too low";
 }

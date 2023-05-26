@@ -18,8 +18,8 @@ class Form {
 		
 		std::string		getName(void) const;
 		bool			getIsSigned(void) const;
-		size_t	getRequiredGradeToSign(void) const;
-		size_t	getRequiredGradeToExecute(void) const;
+		size_t			getRequiredGradeToSign(void) const;
+		size_t			getRequiredGradeToExecute(void) const;
 
 		void			beSigned(const Bureaucrat &b);
 
@@ -41,10 +41,10 @@ class Form {
 	private:
 		const std::string			_name;
 		bool						_isSigned;
-		const size_t		_requiredGradeToExecute;
-		const size_t		_requiredGradeToSign;
+		const size_t				_requiredGradeToExecute;
+		const size_t				_requiredGradeToSign;
 };
 
-std::ostream &operator<<(std::ostream& os, const Form& bureaucrat);
+std::ostream &operator<<(std::ostream& os, const Form& form);
 
 #endif // EX01_FORM_HPP

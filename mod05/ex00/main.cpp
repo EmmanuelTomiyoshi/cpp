@@ -111,6 +111,8 @@ int main ()
 
 		std::cout << std::endl;
 
+		std::cout << MaryAnne << Albert << Paola << Louis << Brandon << std::endl;
+
 		standard.formatTableHeader();
 
 		MaryAnne.formatTable();

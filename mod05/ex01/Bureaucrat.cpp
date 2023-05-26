@@ -4,8 +4,9 @@ const size_t Bureaucrat::_highestPossibleGrade = 1;
 const size_t Bureaucrat::_lowestPossibleGrade = 150;
 const size_t Bureaucrat::_formatNameWidth = 20;
 const size_t Bureaucrat::_formatGradeWidth = 10;
+const size_t Bureaucrat::_formatSignedWidth = 10;
 
-Bureaucrat::Bureaucrat(void)  : _name("bureaucrat"), _grade(_lowestPossibleGrade)
+Bureaucrat::Bureaucrat(void)  : _name("bureaucrat"), _grade(_lowestPossibleGrade), _isSigned(false)
 {
 	if (SHOW_DEFAULT_MESSAGES)
 	{
@@ -13,7 +14,7 @@ Bureaucrat::Bureaucrat(void)  : _name("bureaucrat"), _grade(_lowestPossibleGrade
 	}
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat &copy) : _name("bureaucrat"), _grade(_lowestPossibleGrade)
+Bureaucrat::Bureaucrat(const Bureaucrat &copy) : _name("bureaucrat"), _grade(_lowestPossibleGrade), _isSigned(false)
 {
 	if (SHOW_DEFAULT_MESSAGES)
 	{
@@ -43,7 +44,7 @@ Bureaucrat::~Bureaucrat(void)
 	}
 }
 
-Bureaucrat::Bureaucrat(const std::string &name) : _name(name), _grade(_lowestPossibleGrade)
+Bureaucrat::Bureaucrat(const std::string &name) : _name(name), _grade(_lowestPossibleGrade), _isSigned(false)
 {
 	if (SHOW_DEFAULT_MESSAGES)
 	{
@@ -51,7 +52,7 @@ Bureaucrat::Bureaucrat(const std::string &name) : _name(name), _grade(_lowestPos
 	}
 }
 
-Bureaucrat::Bureaucrat(const std::string &name, const size_t grade) : _name(name)
+Bureaucrat::Bureaucrat(const std::string &name, const size_t grade) : _name(name), _isSigned(false)
 {
 	if (SHOW_DEFAULT_MESSAGES)
 	{
@@ -68,6 +69,11 @@ std::string Bureaucrat::getName(void) const
 size_t Bureaucrat::getGrade(void) const
 {
 	return _grade;
+}
+
+bool Bureaucrat::getIsSigned(void) const
+{
+	return _isSigned;
 }
 
 void Bureaucrat::setGrade(const size_t grade)
@@ -91,18 +97,34 @@ void Bureaucrat::formatTable(void)
 	std::cout << std::setfill(' ');
 	std::cout << std::left << std::setw(_formatNameWidth) << _name;
 	std::cout << " | ";
-	std::cout << std::right << std::setw(_formatGradeWidth) << _grade << std::endl;
+	std::cout << std::right << std::setw(_formatGradeWidth) << _grade;
+	std::cout << " | ";
+	std::cout << std::right << std::setw(_formatSignedWidth);
+	
+	if (this->_isSigned)
+		std::cout << "yes";
+	else
+		std::cout << "no";
+
+	std::cout << std::endl;
 }
 
 void Bureaucrat::formatTableHeader(void)
 {
 	std::cout << std::left << std::setw(_formatNameWidth) << "Name";
 	std::cout << " | ";
-	std::cout << std::right << std::setw(_formatGradeWidth) << "Grade" << std::endl;
+	std::cout << std::right << std::setw(_formatGradeWidth) << "Grade";
+	std::cout << " | ";
+	std::cout << std::right << std::setw(_formatSignedWidth) << "Signed" << std::endl;
 
 	std::cout << std::setfill('-') << std::setw(_formatNameWidth) << "";
 	std::cout << " + ";
-	std::cout << std::setw(_formatGradeWidth) << "" << std::endl;
+	std::cout << std::setw(_formatGradeWidth) << "";
+	std::cout << " + ";
+	std::cout << std::setw(_formatSignedWidth) << "" << std::endl;
+
+	std::cout << std::setfill(' ');
+
 }
 
 void Bureaucrat::signForm(Form &form)
@@ -110,13 +132,13 @@ void Bureaucrat::signForm(Form &form)
 	try
 	{
 		form.beSigned(*this);
-		std::cout << _name << " signed " << form.getName();
-
+		_isSigned = true;
+		std::cout << _name << " signed " << form.getName() << std::endl;
 	}
 	catch (std::exception &e)
 	{
-		std::cout << _name << " could\'nt sign " << form.getName()
-		<< " because " << e.what() << std::endl;
+		std::cout << _name << " couldn\'t sign " << form.getName()
+		<< " because their " << e.what() << std::endl;
 	}
 }
 

@@ -24,6 +24,7 @@ class Bureaucrat {
 		
 		std::string		getName(void) const;
 		size_t			getGrade(void) const;
+		bool			getIsSigned(void) const;
 		void			setGrade(const size_t grade);
 
 		void			incrementGrade(void);
@@ -37,14 +38,12 @@ class Bureaucrat {
 		std::ostream&operator<<(std::ostream &os);
 
 		//exceptions
-		void 			checkGrade(const size_t grade); //where the exceptions are verified
+		void 			checkGrade(const size_t grade);
 
 		class GradeTooHighException: public std::exception
 		{
 			public:
-				virtual ~GradeTooHighException() throw() {} //it's a best practice to include a destructor in the
-															//derived class with the same exception specification of
-															//the super class (in this case, std::exception)
+				virtual ~GradeTooHighException() throw() {}
 				GradeTooHighException(const Bureaucrat &b) : bureaucrat(b)
 				{
 					errorMessage = "Error: exception: " + bureaucrat.getName() + "\'s grade is too high";
@@ -73,10 +72,15 @@ class Bureaucrat {
 		static const size_t _lowestPossibleGrade;
 		static const size_t	_formatNameWidth;
 		static const size_t	_formatGradeWidth;
+		static const size_t _formatSignedWidth;
 
 	private:
 		const std::string	_name;
 		size_t				_grade;
+		bool				_isSigned;	//this works for only one form. If the
+										//bureaucrat signs more than one
+										//the value will be always true for this
+										//implementation
 };
 
 std::ostream &operator<<(std::ostream& os, const Bureaucrat& bureaucrat);
