@@ -14,7 +14,7 @@ class Form {
 		~Form(void);
 
 		Form(const std::string &name);
-		Form(const std::string &name, const unsigned &gradeToExecute, const unsigned &gradeToSign);
+		Form(const std::string &name, const size_t &gradeToExecute, const size_t &gradeToSign);
 		
 		std::string		getName(void) const;
 		bool			getIsSigned(void) const;

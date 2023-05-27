@@ -53,7 +53,7 @@ _requiredGradeToSign(Bureaucrat::_lowestPossibleGrade)
 	_isSigned = 0;
 }
 
-Form::Form(const std::string &name, const unsigned &gradeToSign, const unsigned &gradeToExecute)
+Form::Form(const std::string &name, const size_t &gradeToSign, const size_t &gradeToExecute)
 : _name(name), _isSigned(false), _requiredGradeToExecute(gradeToExecute), _requiredGradeToSign(gradeToSign)
 {
 	if (SHOW_DEFAULT_MESSAGES)
