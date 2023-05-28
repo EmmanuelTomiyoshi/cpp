@@ -1,12 +1,12 @@
-#ifndef EX01_BUREAUCRAT_HPP
-#define EX01_BUREAUCRAT_HPP
+#ifndef EX02_BUREAUCRAT_HPP
+#define EX02_BUREAUCRAT_HPP
 
 #include <iostream>
 #include <stdexcept>
 #include <iomanip>
 #include <cstdlib>
 #include "colors.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
 
 #define SHOW_DEFAULT_MESSAGES 1
 
@@ -25,7 +25,6 @@ class Bureaucrat {
 		std::string		getName(void) const;
 		size_t			getGrade(void) const;
 		bool			getIsSigned(void) const;
-		void			setGrade(const size_t grade);
 
 		void			incrementGrade(void);
 		void			decrementGrade(void);
@@ -33,7 +32,8 @@ class Bureaucrat {
 		void			formatTable(void);
 		void			formatTableHeader(void);
 
-		void			signForm(Form &form);
+		void			signForm(AForm &form);
+		void			executeForm(AForm const &form);
 
 		std::ostream&operator<<(std::ostream &os);
 
@@ -68,6 +68,8 @@ class Bureaucrat {
 				std::string			errorMessage;
 		};
 
+		void	executeForm(AForm const &form) const;
+
 		static const size_t _highestPossibleGrade;
 		static const size_t _lowestPossibleGrade;
 		static const size_t	_formatNameWidth;
@@ -77,12 +79,10 @@ class Bureaucrat {
 	private:
 		const std::string	_name;
 		size_t				_grade;
-		bool				_isSigned;	//this works for only one form. If the
-										//bureaucrat signs more than one
-										//the value will be always true for this
-										//implementation
+		bool				_isSigned;
+		void				setGrade(const size_t grade);
 };
 
 std::ostream &operator<<(std::ostream& os, const Bureaucrat& bureaucrat);
 
-#endif // EX01_BUREAUCRAT_HPP
+#endif // EX02_BUREAUCRAT_HPP

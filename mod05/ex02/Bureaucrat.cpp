@@ -127,7 +127,7 @@ void Bureaucrat::formatTableHeader(void)
 
 }
 
-void Bureaucrat::signForm(Form &form)
+void Bureaucrat::signForm(AForm &form)
 {
 	try
 	{
