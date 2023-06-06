@@ -63,7 +63,7 @@ void RobotomyRequestForm::execute(Bureaucrat const &executor) const
 		tv.tv_usec = 0;
 	}
 
-	std::srand((tv.tv_usec / 7) + 1); //crazy math just to make a random seed
+	std::srand(time(0));
 
 	if (std::rand() % 2 == 1)
 		std::cout << target << " has been robotomized succesfully 50\% of the time" << std::endl;
@@ -71,6 +71,5 @@ void RobotomyRequestForm::execute(Bureaucrat const &executor) const
 		std::cout << target << " had their robotomy failed" << std::endl;
 
 	//sleeping to make next execution randomized
-	clock_t	start_time = clock();
-	while (clock() < start_time + 2023) {/*wait until the target clock time is reached}*/}
+	usleep(tv.tv_usec);
 }

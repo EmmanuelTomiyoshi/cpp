@@ -4,6 +4,7 @@
 #include "AForm.hpp"
 #include <time.h>		//time()
 #include <sys/time.h>	//struct timeval
+#include <unistd.h>		//usleep()
 
 #define ROBOTOMY_REQUEST_FORM_SIGN 72
 #define ROBOTOMY_REQUEST_FORM_EXECUTE 45
