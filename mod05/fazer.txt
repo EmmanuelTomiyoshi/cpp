@@ -1,0 +1,1 @@
+alinhar toda configuração do Bureaucrat{.cpp,.hpp} do ex01 com o do ex00

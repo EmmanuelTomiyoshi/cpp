@@ -76,6 +76,14 @@ void Bureaucrat::setGrade(const size_t grade)
 	_grade = grade;
 }
 
+void Bureaucrat::checkGrade(const size_t grade)
+{
+	if (grade < _highestPossibleGrade)
+		throw GradeTooHighException(*this);
+	if (grade > _lowestPossibleGrade)
+		throw GradeTooLowException(*this);
+}
+
 void Bureaucrat::incrementGrade(void)
 {
 	setGrade(_grade - 1);
@@ -109,14 +117,6 @@ std::ostream &operator<<(std::ostream &os, const Bureaucrat &Bureaucrat)
 {
 	os << Bureaucrat.getName() << ", bureaucrat grade is " << Bureaucrat.getGrade() << std::endl;
 	return os;
-}
-
-void Bureaucrat::checkGrade(const size_t grade)
-{
-	if (grade < _highestPossibleGrade)
-		throw GradeTooHighException(*this);
-	if (grade > _lowestPossibleGrade)
-		throw GradeTooLowException(*this);
 }
 
 const char *Bureaucrat::GradeTooHighException::what() const throw()

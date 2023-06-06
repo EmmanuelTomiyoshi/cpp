@@ -10,7 +10,7 @@ class Form {
 	public:
 		Form(void);
 		Form(const Form &copy);
-		Form&operator=(const Form &);
+		Form&operator=(const Form &copy);
 		~Form(void);
 
 		Form(const std::string &name);
@@ -20,6 +20,9 @@ class Form {
 		bool			getIsSigned(void) const;
 		size_t			getRequiredGradeToSign(void) const;
 		size_t			getRequiredGradeToExecute(void) const;
+		
+		void			formatTable(void);
+		void			formatTableHeader(void);
 
 		void			beSigned(const Bureaucrat &b);
 
@@ -37,6 +40,9 @@ class Form {
 			public:
 				const char *what() const throw();
 		};
+
+		static const size_t	_formatNameWidth;
+		static const size_t	_formatSignedWidth;
 
 	private:
 		const std::string			_name;

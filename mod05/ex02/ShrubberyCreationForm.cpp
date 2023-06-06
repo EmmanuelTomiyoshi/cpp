@@ -2,7 +2,7 @@
 #include "Bureaucrat.hpp"
 
 ShrubberyCreationForm::ShrubberyCreationForm(void) :
-AForm("Presidential Pardon Form", SHRUBBERY_CREATION_FORM_SIGN, SHRUBBERY_CREATION_FORM_EXECUTE, "undefined")
+AForm("Shrubbery Creation Form", SHRUBBERY_CREATION_FORM_SIGN, SHRUBBERY_CREATION_FORM_EXECUTE, "undefined")
 {
 	if (SHOW_DEFAULT_MESSAGES)
 	{
@@ -11,7 +11,7 @@ AForm("Presidential Pardon Form", SHRUBBERY_CREATION_FORM_SIGN, SHRUBBERY_CREATI
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &copy) :
-AForm("ShrubberyCreationForm", SHRUBBERY_CREATION_FORM_SIGN, SHRUBBERY_CREATION_FORM_EXECUTE, "undefined")
+AForm("Shrubbery Creation Form", SHRUBBERY_CREATION_FORM_SIGN, SHRUBBERY_CREATION_FORM_EXECUTE, "undefined")
 {
 	if (SHOW_DEFAULT_MESSAGES)
 	{
@@ -20,11 +20,15 @@ AForm("ShrubberyCreationForm", SHRUBBERY_CREATION_FORM_SIGN, SHRUBBERY_CREATION_
 	*this = copy;
 }
 
-ShrubberyCreationForm&ShrubberyCreationForm::operator=(const ShrubberyCreationForm &)
+ShrubberyCreationForm&ShrubberyCreationForm::operator=(const ShrubberyCreationForm &copy)
 {
 	if (SHOW_DEFAULT_MESSAGES)
 	{
 		std::cout << "[ShrubberyCreationForm] assignment copy operator called" << std::endl;
+	}
+	if (this != &copy)
+	{
+		target = copy.target;
 	}
 	return *this;
 }
@@ -38,7 +42,7 @@ ShrubberyCreationForm::~ShrubberyCreationForm(void)
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string &target) :
-AForm("ShrubberyCreationForm", SHRUBBERY_CREATION_FORM_SIGN, SHRUBBERY_CREATION_FORM_EXECUTE, target)
+AForm("Shrubbery Creation Form", SHRUBBERY_CREATION_FORM_SIGN, SHRUBBERY_CREATION_FORM_EXECUTE, target)
 {
 	if (SHOW_DEFAULT_MESSAGES)
 	{
@@ -48,8 +52,9 @@ AForm("ShrubberyCreationForm", SHRUBBERY_CREATION_FORM_SIGN, SHRUBBERY_CREATION_
 
 void ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 {
-	AForm::execute(executor);
-	std::string		file = getTarget() + "_shrubbery";
+	AForm::canExecute(executor);
+
+	std::string		file = getTarget() + "_shrubbery.txt";
 	std::ofstream	output;
 
 	output.open(file.c_str());
@@ -58,11 +63,10 @@ void ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 		output << ASCII_TREE;
 		if (output.bad())
 			std::cout << "[ShrubberyCreationForm] Failed to write to file" << std::endl;
-		output.close();
 	}
 	else
 	{
-		std::cout << "Could not open file " << file << std::endl;
+		std::cout << "[ShrubberyCreationForm] Could not open file " << file << std::endl;
 	}
 	output.close();
 }

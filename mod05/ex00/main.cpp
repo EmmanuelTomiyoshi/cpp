@@ -2,6 +2,7 @@
 
 int main ()
 {
+	std::cout << COLOR_BHWHITE << "SUCCESSFUL TEST CASES" << COLOR_RESET << std::endl;
 	//Success
 	{
 		Bureaucrat example("Bob", 2);
@@ -35,7 +36,7 @@ int main ()
 
 		try
 		{
-			Bureaucrat d;	//still, doesn't need a try catch because we're not setting the grade
+			Bureaucrat d;	//still, doesn't need a try catch because we're not setting the grade...
 		}
 		catch (std::exception &e)
 		{
@@ -44,7 +45,7 @@ int main ()
 
 		try
 		{
-			Bureaucrat f("Fred"); //nor this one
+			Bureaucrat f("Fred"); //...nor this one
 		}
 		catch (std::exception &e)
 		{
@@ -99,7 +100,7 @@ int main ()
 		}
 	}
 
-	std::cout << std::endl << COLOR_BHWHITE << "TESTS WITH INCREMENT/DECREMENT" << COLOR_RESET << std::endl;
+	std::cout << std::endl << COLOR_BHWHITE << "EXCEPTIONS WITH INCREMENT/DECREMENT" << COLOR_RESET << std::endl;
 
 	{
 		Bureaucrat MaryAnne("Marry Anne", 1);
@@ -109,8 +110,7 @@ int main ()
 		Bureaucrat Brandon("Brandon");
 		Bureaucrat standard;		//just for the Table Header
 
-		std::cout << std::endl;
-
+		std::cout << std::endl << COLOR_BHWHITE << "(Before changes)" << COLOR_RESET << std::endl;
 		std::cout << MaryAnne << Albert << Paola << Louis << Brandon << std::endl;
 
 		standard.formatTableHeader();
@@ -150,7 +150,7 @@ int main ()
 
 		try
 		{
-			Louis.checkGrade(Louis.getGrade());
+			Louis.incrementGrade();
 		}
 		catch (std::exception &e)
 		{
@@ -165,6 +165,16 @@ int main ()
 		{
 			std::cout << e.what() << std::endl;
 		}
+
+		std::cout << std::endl << COLOR_BHWHITE << "(After changes)" << COLOR_RESET << std::endl;
+
+		standard.formatTableHeader();
+
+		MaryAnne.formatTable();
+		Albert.formatTable();
+		Paola.formatTable();
+		Louis.formatTable();
+		Brandon.formatTable();
 
 		std::cout << std::endl;
 	}

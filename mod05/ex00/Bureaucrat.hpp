@@ -22,8 +22,8 @@ class Bureaucrat {
 		
 		std::string			getName(void) const;
 		size_t				getGrade(void) const;
-		void				setGrade(const size_t grade);
 
+		void 				checkGrade(const size_t grade); //where the exceptions are verified
 		void				incrementGrade(void);
 		void				decrementGrade(void);
 
@@ -36,7 +36,6 @@ class Bureaucrat {
 		std::ostream&operator<<(std::ostream &os);
 
 		//exceptions
-		void 				checkGrade(const size_t grade); //where the exceptions are verified
 
 		class GradeTooHighException: public std::exception
 		{
@@ -74,6 +73,7 @@ class Bureaucrat {
 		static const size_t	_formatGradeWidth;
 
 	private:
+		void				setGrade(const size_t grade);
 		const std::string	_name;
 		size_t				_grade;
 };

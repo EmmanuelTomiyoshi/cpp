@@ -1,6 +1,9 @@
 #include "Form.hpp"
 #include "Bureaucrat.hpp"
 
+const size_t Form::_formatNameWidth = 20;
+const size_t Form::_formatSignedWidth = 10;
+
 Form::Form(void) :
 _name("Standard form"), _isSigned(false),
 _requiredGradeToExecute(Bureaucrat::_lowestPossibleGrade),
@@ -24,11 +27,15 @@ _requiredGradeToSign(Bureaucrat::_lowestPossibleGrade)
 	*this = copy;
 }
 
-Form&Form::operator=(const Form &) //has no copy because there isn't something to
+Form&Form::operator=(const Form &copy)
 {
 	if (SHOW_DEFAULT_MESSAGES)
 	{
 		std::cout << "[Form] assignment copy operator called" << std::endl;
+	}
+	if (this != &copy)
+	{
+		_isSigned = copy._isSigned;
 	}
 	return *this;
 }
@@ -89,6 +96,34 @@ size_t Form::getRequiredGradeToExecute(void) const
 size_t Form::getRequiredGradeToSign(void) const
 {
 	return _requiredGradeToSign;
+}
+
+void Form::formatTable(void)
+{
+	std::cout << std::setfill(' ');
+	std::cout << std::left << std::setw(_formatNameWidth) << _name;
+	std::cout << " | ";
+	std::cout << std::right << std::setw(_formatSignedWidth);
+	
+	if (this->_isSigned)
+		std::cout << "yes";
+	else
+		std::cout << "no";
+
+	std::cout << std::endl;
+}
+
+void Form::formatTableHeader(void)
+{
+	std::cout << std::left << std::setw(_formatNameWidth) << "Name";
+	std::cout << " | ";
+	std::cout << std::right << std::setw(_formatSignedWidth) << "Signed" << std::endl;
+
+	std::cout << std::setfill('-') << std::setw(_formatNameWidth) << "";
+	std::cout << " + ";
+	std::cout << std::setw(_formatSignedWidth) << "" << std::endl;
+
+	std::cout << std::setfill(' ');
 }
 
 void Form::beSigned(const Bureaucrat &b)

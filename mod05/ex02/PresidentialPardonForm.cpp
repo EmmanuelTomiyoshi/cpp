@@ -20,11 +20,15 @@ AForm("PresidentialPardonForm", PRES_PARDON_FORM_SIGN, PRES_PARDON_FORM_EXECUTE,
 	*this = copy;
 }
 
-PresidentialPardonForm&PresidentialPardonForm::operator=(const PresidentialPardonForm &)
+PresidentialPardonForm&PresidentialPardonForm::operator=(const PresidentialPardonForm &copy)
 {
 	if (SHOW_DEFAULT_MESSAGES)
 	{
 		std::cout << "[PresidentialPardonForm] assignment copy operator called" << std::endl;
+	}
+	if (this != &copy)
+	{
+		target = copy.target;
 	}
 	return *this;
 }
@@ -48,6 +52,6 @@ AForm("PresidentialPardonForm", PRES_PARDON_FORM_SIGN, PRES_PARDON_FORM_EXECUTE,
 
 void PresidentialPardonForm::execute(Bureaucrat const &executor) const
 {
-	AForm::execute(executor);
+	AForm::canExecute(executor);
 	std::cout << getTarget() << " has been pardoned by Zaphod Beeblebrox" << std::endl;
 }

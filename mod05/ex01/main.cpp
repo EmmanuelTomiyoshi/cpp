@@ -8,7 +8,7 @@ int main ()
 		Bureaucrat	Paola("Paola", 34);
 		Bureaucrat	Louis("Louis", 50);
 		Bureaucrat 	Brandon("Brandon");
-		Bureaucrat 	standard;
+		Form		standard;
 		Form		formA;
 		Form		formB("Environment form");
 		Form		formC("Health form", 25, 10);
@@ -19,11 +19,10 @@ int main ()
 		std::cout << formA << formB << formC << formD;
 
 		standard.formatTableHeader();
-		MaryAnne.formatTable();
-		Anthony.formatTable();
-		Paola.formatTable();
-		Louis.formatTable();
-		Brandon.formatTable();
+		formA.formatTable();
+		formB.formatTable();
+		formC.formatTable();
+		formD.formatTable();
 
 		try
 		{
@@ -52,12 +51,15 @@ int main ()
 			std::cout << e.what() << std::endl;
 		}
 
+			std::cout << std::endl;
+
+		std::cout << formA << formB << formC << formD;
+
 		standard.formatTableHeader();
-		MaryAnne.formatTable();
-		Anthony.formatTable();
-		Paola.formatTable();
-		Louis.formatTable();
-		Brandon.formatTable();
+		formA.formatTable();
+		formB.formatTable();
+		formC.formatTable();
+		formD.formatTable();
 
 		std::cout << std::endl;
 	}

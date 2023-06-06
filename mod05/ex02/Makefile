@@ -26,6 +26,7 @@ $(BUILD_DIR):
 
 clean:
 	$(RM) $(BUILD_DIR)/*.o $(BUILD_DIR)/*.d
+	$(RM) *.txt
 
 fclean: clean
 	$(RM) *.out $(NAME)

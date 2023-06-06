@@ -1,6 +1,9 @@
 #include "AForm.hpp"
 #include "Bureaucrat.hpp"
 
+const size_t AForm::_formatNameWidth = 20;
+const size_t AForm::_formatSignedWidth = 10;
+
 AForm::AForm(void) :
 target("nobody"),
 _name("standard form"), _isSigned(false),
@@ -18,7 +21,6 @@ _name(copy.getName()), _isSigned(copy.getIsSigned()),
 _requiredGradeToSign(copy.getRequiredGradeToSign()),
 _requiredGradeToExecute(copy.getRequiredGradeToExecute())
 {
-	//we copy the properties at initialization, since they are constant
 	if (SHOW_DEFAULT_MESSAGES)
 	{
 		std::cout << "[AForm] copy constructor called" << std::endl;
@@ -26,13 +28,16 @@ _requiredGradeToExecute(copy.getRequiredGradeToExecute())
 	*this = copy;
 }
 
-AForm&AForm::operator=(const AForm &)
+AForm&AForm::operator=(const AForm &copy)
 {
 	if (SHOW_DEFAULT_MESSAGES)
 	{
 		std::cout << "[AForm] assignment copy operator called" << std::endl;
 	}
-	//no copy because everything is contant at initialization
+	if (this != &copy)
+	{
+		_isSigned = copy._isSigned;
+	}
 	return *this;
 }
 
@@ -92,17 +97,56 @@ void AForm::beSigned(const Bureaucrat &b)
 		throw GradeTooLowException();
 }
 
+void AForm::formatTable(void)
+{
+	std::string	name_copy = _name;
+	if (_name.length() > 20)
+	{
+		name_copy.resize(19);
+		name_copy.append(".");
+	}
+
+	std::cout << std::setfill(' ');
+	std::cout << std::left << std::setw(_formatNameWidth) << name_copy;
+	std::cout << " | ";
+	std::cout << std::right << std::setw(_formatSignedWidth);
+	
+	if (this->_isSigned)
+		std::cout << "yes";
+	else
+		std::cout << "no";
+
+	std::cout << std::endl;
+}
+
+void AForm::formatTableHeader(void)
+{
+	std::cout << std::left << std::setw(_formatNameWidth) << "Name";
+	std::cout << " | ";
+	std::cout << std::right << std::setw(_formatSignedWidth) << "Signed" << std::endl;
+
+	std::cout << std::setfill('-') << std::setw(_formatNameWidth) << "";
+	std::cout << " + ";
+	std::cout << std::setw(_formatSignedWidth) << "" << std::endl;
+
+	std::cout << std::setfill(' ');
+}
+
 const std::string &AForm::getTarget() const
 {
 	return target;
 }
 
-void AForm::execute(Bureaucrat const &executor) const
+void AForm::canExecute(Bureaucrat const &executor) const
 {
 	if (!getIsSigned())
+	{
 		throw FormIsUnsignedException();
+	}
 	if (executor.getGrade() > getRequiredGradeToExecute())
+	{
 		throw GradeTooLowToExecuteException();
+	}
 }
 
 std::ostream &operator<<(std::ostream &os, const AForm &form)

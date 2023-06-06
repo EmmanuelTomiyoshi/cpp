@@ -11,7 +11,6 @@
 #define SHOW_DEFAULT_MESSAGES 1
 
 class Bureaucrat {
-
 	
 	public:
 		Bureaucrat(void);
@@ -24,9 +23,8 @@ class Bureaucrat {
 		
 		std::string		getName(void) const;
 		size_t			getGrade(void) const;
-		bool			getIsSigned(void) const;
-		void			setGrade(const size_t grade);
 
+		void 			checkGrade(const size_t grade);
 		void			incrementGrade(void);
 		void			decrementGrade(void);
 
@@ -38,8 +36,6 @@ class Bureaucrat {
 		std::ostream&operator<<(std::ostream &os);
 
 		//exceptions
-		void 			checkGrade(const size_t grade);
-
 		class GradeTooHighException: public std::exception
 		{
 			public:
@@ -72,15 +68,11 @@ class Bureaucrat {
 		static const size_t _lowestPossibleGrade;
 		static const size_t	_formatNameWidth;
 		static const size_t	_formatGradeWidth;
-		static const size_t _formatSignedWidth;
 
 	private:
+		void				setGrade(const size_t grade);
 		const std::string	_name;
 		size_t				_grade;
-		bool				_isSigned;	//this works for only one form. If the
-										//bureaucrat signs more than one
-										//the value will be always true for this
-										//implementation
 };
 
 std::ostream &operator<<(std::ostream& os, const Bureaucrat& bureaucrat);
