@@ -67,6 +67,7 @@ _requiredGradeToExecute(requiredGradeToExecute)
 		throw GradeTooHighException();
 	if (_requiredGradeToExecute > Bureaucrat::_lowestPossibleGrade)
 		throw GradeTooLowException();
+	_isSigned = false;
 }
 
 std::string AForm::getName(void) const
