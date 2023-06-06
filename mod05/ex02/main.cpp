@@ -209,7 +209,7 @@ void	testsPresidential(void)
 		}
 		catch (std::exception &e)
 		{
-			std::cout << "PresidentialPardonForm: " << e.what() << std::endl;
+			std::cout << "Presidential Pardon Form: " << e.what() << std::endl;
 		}
 	}
 
