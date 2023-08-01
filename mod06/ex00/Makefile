@@ -1,6 +1,6 @@
 NAME 		=	scalarConverter
 
-SRC 		=	main.cpp ScalarConverter.cpp
+SRC 		=	main.cpp ScalarConverter.cpp parse.cpp conversions.cpp
 
 CXX 		=	c++
 CXXFLAGS 	=	-Wall -Wextra -Werror -std=c++98 -g
@@ -25,13 +25,13 @@ $(NAME): $(BUILD_DIR) $(OBJ)
 	$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJ)
 
 $(BUILD_DIR):
-	@mkdir -p $@
+	mkdir -p $@
 
 $(TESTER): $(NAME) $(OBJ_TEST)
-	$(CXX) $(CXXFLAGS) -o $@ $(OBJ_TEST) $(filter-out %main.o, $(OBJ))
+	$(CXX) $(filter-out %main.o, $(OBJ)) $(OBJ_TEST) -o $@ $(CXXFLAGS)
 
 tests:	$(TESTER)
-	@$(VALAGRIND) ./$(TESTER)
+	$(VALGRIND) ./$(TESTER)
 
 clean:
 	$(RM) $(BUILD_DIR)/*.o $(BUILD_DIR)/*.d

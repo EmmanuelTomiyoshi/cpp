@@ -31,15 +31,13 @@ TEST_CASE("test with int")
 	CHECK_EQ(parse("+255555"), INT);
 	CHECK_EQ(parse("0001"), INT);
 	CHECK_EQ(parse("-0001"), INT);
-	CHECK_EQ(parse("-1-"), INT);
+	CHECK_EQ(parse("-1-"), UNKNOWN);
 	CHECK_EQ(parse("a000000"), UNKNOWN);
 	CHECK_EQ(parse("000000a"), UNKNOWN);
-	CHECK_EQ(parse("000000F"), UNKNOWN);
-	CHECK_EQ(parse("000000f"), UNKNOWN);
 	CHECK_EQ(parse("--1"), UNKNOWN);
 	CHECK_EQ(parse("+-1"), UNKNOWN);
-	CHECK_EQ(parse("-0"), UNKNOWN);
-	CHECK_EQ(parse("+0"), UNKNOWN);
+	CHECK_EQ(parse("-0"), INT);
+	CHECK_EQ(parse("+0"), INT);
 }
 
 TEST_CASE("test with float")
@@ -49,6 +47,8 @@ TEST_CASE("test with float")
 	CHECK_EQ(parse("0.2f"), FLOAT);
 	CHECK_EQ(parse("0.2F"), FLOAT);
 	CHECK_EQ(parse("0000000.2f"), FLOAT);
+	CHECK_EQ(parse("000000F"), FLOAT);
+	CHECK_EQ(parse("000000f"), FLOAT);
 	CHECK_EQ(parse("01010101.2f"), FLOAT);
 	CHECK_EQ(parse("0000000.2F"), FLOAT);
 	CHECK_EQ(parse("01010101.2F"), FLOAT);
