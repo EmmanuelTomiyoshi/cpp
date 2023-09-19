@@ -39,3 +39,13 @@ void toDouble(const std::string type, t_convert &convert)
 
 	displayTypes(convert);
 }
+
+void toPseudos(const std::string type, t_convert &convert)
+{
+	convert._typeDouble = std::atof(type.c_str());	//atof to handle infinity
+	convert._typeChar = static_cast<char>(convert._typeDouble);
+	convert._typeInt = static_cast<int>(convert._typeDouble);
+	convert._typeFloat = static_cast<float>(convert._typeDouble);
+
+	displayTypes(convert);
+}

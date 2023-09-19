@@ -82,6 +82,15 @@ bool isDouble(std::string str)
 
 t_scalarTypes parse(std::string str)
 {
+	if (str == "-inff" || str == "+inff" || str == "nanf")
+	{
+        return PSEUDO_FLOAT;
+	}
+    if (str == "-inf" || str == "+inf" || str == "nan")
+	{
+        return PSEUDO_DOUBLE;
+	}
+
 	if (!str.length())
 		return UNKNOWN;
 

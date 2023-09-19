@@ -24,6 +24,7 @@ void ScalarConverter::convert(std::string type)
 
 	t_scalarTypes result = parse(type);
 	convert._tempNum = atoll(type.c_str());
+
 	switch (result)
 	{
         case UNKNOWN :
@@ -39,5 +40,12 @@ void ScalarConverter::convert(std::string type)
 			break;
 		case DOUBLE :
 			toDouble(type, convert);
+			break;
+		case PSEUDO_FLOAT :
+			toPseudos(type, convert);
+			break;
+		case PSEUDO_DOUBLE :
+			toPseudos(type, convert);
+			break;
     }
 }

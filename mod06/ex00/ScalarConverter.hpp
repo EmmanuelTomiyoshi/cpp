@@ -4,6 +4,8 @@
 #include <iostream>
 #include <string>
 #include <stdlib.h>
+#include <cstdlib>
+#include <sstream>
 #include <limits.h>
 #include <cfloat>
 #include <cctype>
@@ -19,7 +21,8 @@ typedef struct s_convert
 	float		_typeFloat;
 	double		_typeDouble;
 
-	long long	_tempNum;
+
+	long long	_tempNum;	//check extreme values (min and max)
 } t_convert;
 
 typedef enum e_scalarTypes
@@ -28,7 +31,9 @@ typedef enum e_scalarTypes
 	CHAR,
 	INT,
 	FLOAT,
-	DOUBLE
+	DOUBLE,
+	PSEUDO_FLOAT,
+	PSEUDO_DOUBLE
 } t_scalarTypes;
 
 class ScalarConverter {
@@ -41,6 +46,7 @@ class ScalarConverter {
 };
 
 t_scalarTypes parse(std::string type);
+void toPseudos(const std::string type, t_convert &convert);
 void toChar(const std::string type, t_convert &convert);
 void toInt(const std::string type, t_convert &convert);
 void toFloat(const std::string type, t_convert &convert);
