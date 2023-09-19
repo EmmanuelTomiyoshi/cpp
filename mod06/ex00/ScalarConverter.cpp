@@ -2,20 +2,19 @@
 
 void displayTypes(t_convert &convert)
 {
-	if (!isascii(convert._typeChar))
+	if (!isascii(convert._typeInt))
 		std::cout << "char: impossible" << std::endl;
 	else if (std::isprint(convert._typeChar))
 		std::cout << "char: " << convert._typeChar << std::endl;
 	else
 		std::cout << "char: non displayable" << std::endl;
 
-	
-	if ( convert._tempNum >= INT_MIN && convert._tempNum <= INT_MAX && !(std::isnan(convert._typeFloat) || std::isnan(convert._typeDouble) || std::isinf(convert._typeFloat) || std::isinf(convert._typeDouble)))
+	if (convert._tempNum >= INT_MIN && convert._tempNum <= INT_MAX && !(std::isnan(convert._typeFloat) || std::isnan(convert._typeDouble) || std::isinf(convert._typeFloat) || std::isinf(convert._typeDouble)))
         std::cout << "int: " << convert._typeInt << std::endl;
 	else
 		std::cout << "int: impossible" << std::endl;
 
-	std::cout << "float: " << convert._typeFloat << std::endl;
+	std::cout << "float: " << convert._typeFloat << "f" << std::endl;
 	std::cout << "double: " << convert._typeDouble << std::endl;
 }
 

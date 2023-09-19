@@ -12,12 +12,6 @@ void toChar(const std::string type, t_convert &convert)
 
 void toInt(const std::string type, t_convert &convert)
 {
-	// long temp = std::atol(type.c_str());
-
-	// if (temp > INT_MAX || temp < INT_MIN)
-	// {
-	// 	return ;
-	// }
 	convert._typeInt = std::atof(type.c_str());
 	convert._typeChar = static_cast<char>(convert._typeInt);
 	convert._typeFloat = static_cast<float>(convert._typeInt);

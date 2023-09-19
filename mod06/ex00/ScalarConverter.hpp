@@ -31,7 +31,6 @@ typedef enum e_scalarTypes
 	DOUBLE
 } t_scalarTypes;
 
-
 class ScalarConverter {
 
 	public:
