@@ -1,6 +1,6 @@
 NAME 		=	scalarConverter
 
-SRC 		=	main.cpp ScalarConverter.cpp parse.cpp conversions.cpp
+SRC 		=	main.cpp ScalarConverter.cpp parser.cpp conversions.cpp
 
 CXX 		=	c++
 CXXFLAGS 	=	-Wall -Wextra -Werror -std=c++98 -g

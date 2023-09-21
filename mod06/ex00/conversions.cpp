@@ -32,7 +32,13 @@ void toFloat(const std::string type, t_convert &convert)
 
 void toDouble(const std::string type, t_convert &convert)
 {
-	convert._typeDouble = std::atol(type.c_str());
+	long double _value = std::strtold(type.c_str(), NULL);
+	if (_value > DBL_MAX || _value < -DBL_MAX)
+	{
+		displayAllImpossible();
+		return ;
+	}
+	convert._typeDouble = static_cast<double>(_value);
 	convert._typeChar = static_cast<char>(convert._typeDouble);
 	convert._typeInt = static_cast<int>(convert._typeDouble);
 	convert._typeFloat = static_cast<float>(convert._typeDouble);
@@ -40,9 +46,19 @@ void toDouble(const std::string type, t_convert &convert)
 	displayTypes(convert);
 }
 
-void toPseudos(const std::string type, t_convert &convert)
+void toPseudoFloat(const std::string type, t_convert &convert)
 {
-	convert._typeDouble = std::atof(type.c_str());	//atof to handle infinity
+	convert._typeDouble = std::atof(type.c_str());
+	convert._typeChar = static_cast<char>(convert._typeDouble);
+	convert._typeInt = static_cast<int>(convert._typeDouble);
+	convert._typeFloat = static_cast<float>(convert._typeDouble);
+
+	displayTypes(convert);
+}
+
+void toPseudoDouble(const std::string type, t_convert &convert)
+{
+	convert._typeDouble = std::atof(type.c_str());
 	convert._typeChar = static_cast<char>(convert._typeDouble);
 	convert._typeInt = static_cast<int>(convert._typeDouble);
 	convert._typeFloat = static_cast<float>(convert._typeDouble);

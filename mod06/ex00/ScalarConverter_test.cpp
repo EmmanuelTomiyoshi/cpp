@@ -50,6 +50,7 @@ TEST_CASE("test with float")
 	CHECK_EQ(parse("000000F"), FLOAT);
 	CHECK_EQ(parse("000000f"), FLOAT);
 	CHECK_EQ(parse("01010101.2f"), FLOAT);
+	CHECK_EQ(parse("1.235434534f"), FLOAT);
 	CHECK_EQ(parse("0000000.2F"), FLOAT);
 	CHECK_EQ(parse("01010101.2F"), FLOAT);
 	CHECK_EQ(parse("2.f"), FLOAT);
@@ -84,6 +85,7 @@ TEST_CASE("test with double")
 	CHECK_EQ(parse("2."), DOUBLE);
 	CHECK_EQ(parse("2.0"), DOUBLE);
 	CHECK_EQ(parse("2.1"), DOUBLE);
+	CHECK_EQ(parse("1.235434534"), DOUBLE);
 	CHECK_EQ(parse("01010101..2"), UNKNOWN);
 	CHECK_EQ(parse("a01010101.2"), UNKNOWN);
 	CHECK_EQ(parse("01010101.2a"), UNKNOWN);

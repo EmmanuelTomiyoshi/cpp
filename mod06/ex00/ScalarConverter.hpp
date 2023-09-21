@@ -46,11 +46,13 @@ class ScalarConverter {
 };
 
 t_scalarTypes parse(std::string type);
-void toPseudos(const std::string type, t_convert &convert);
 void toChar(const std::string type, t_convert &convert);
 void toInt(const std::string type, t_convert &convert);
 void toFloat(const std::string type, t_convert &convert);
 void toDouble(const std::string type, t_convert &convert);
+void toPseudoFloat(const std::string type, t_convert &convert);
+void toPseudoDouble(const std::string type, t_convert &convert);
 void displayTypes(t_convert &convert);
+void displayAllImpossible(void);
 
 #endif // EX00_SCALARCONVERTER_HPP
