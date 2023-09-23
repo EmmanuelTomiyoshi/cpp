@@ -1,5 +1,5 @@
-#ifndef EX00_Serialization_HPP
-#define EX00_Serialization_HPP
+#ifndef EX01_Serialization_HPP
+#define EX01_Serialization_HPP
 
 #include <iostream>
 #include <string>
@@ -23,4 +23,4 @@ class Serialization {
 	private:
 };
 
-#endif // EX00_Serialization_HPP
+#endif // EX01_Serialization_HPP

@@ -10,10 +10,6 @@ BUILD_DIR 	=	build
 OBJ 		=	$(addprefix $(BUILD_DIR)/, $(SRC:.cpp=.o))
 DEP 		=	$(addprefix $(BUILD_DIR)/, $(SRC:.cpp=.d))
 
-TESTER		=	tests.out
-SRC_TEST	=	$(wildcard $(SRC:.cpp=_test.cpp))
-OBJ_TEST	=	$(addprefix $(BUILD_DIR)/, $(SRC_TEST:.cpp=.o))
-
 VALGRIND 	=	valgrind -q --leak-check=full --show-leak-kinds=all
 
 all: $(NAME)
@@ -26,12 +22,6 @@ $(NAME): $(BUILD_DIR) $(OBJ)
 
 $(BUILD_DIR):
 	mkdir -p $@
-
-$(TESTER): $(NAME) $(OBJ_TEST)
-	$(CXX) $(filter-out %main.o, $(OBJ)) $(OBJ_TEST) -o $@ $(CXXFLAGS)
-
-tests:	$(TESTER)
-	$(VALGRIND) ./$(TESTER)
 
 clean:
 	$(RM) $(BUILD_DIR)/*.o $(BUILD_DIR)/*.d
@@ -55,4 +45,4 @@ redebug: fclean debug
 
 -include $(DEP)
 
-.PHONY: all clean fclean rerun leaks debug redebug
+.PHONY: all clean fclean leaks debug redebug

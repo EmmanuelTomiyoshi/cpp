@@ -1,6 +1,6 @@
-NAME 		=	scalarConverter
+NAME 		=	RealType
 
-SRC 		=	main.cpp ScalarConverter.cpp parser.cpp conversions.cpp
+SRC 		=	main.cpp RealType.cpp utils.cpp
 
 CXX 		=	c++
 CXXFLAGS 	=	-Wall -Wextra -Werror -std=c++98 -g
@@ -9,10 +9,6 @@ BUILD_DIR 	=	build
 
 OBJ 		=	$(addprefix $(BUILD_DIR)/, $(SRC:.cpp=.o))
 DEP 		=	$(addprefix $(BUILD_DIR)/, $(SRC:.cpp=.d))
-
-TESTER		=	tests.out
-SRC_TEST	=	$(wildcard $(SRC:.cpp=_test.cpp))
-OBJ_TEST	=	$(addprefix $(BUILD_DIR)/, $(SRC_TEST:.cpp=.o))
 
 VALGRIND 	=	valgrind -q --leak-check=full --show-leak-kinds=all
 
@@ -27,12 +23,6 @@ $(NAME): $(BUILD_DIR) $(OBJ)
 $(BUILD_DIR):
 	mkdir -p $@
 
-$(TESTER): $(NAME) $(OBJ_TEST)
-	$(CXX) $(filter-out %main.o, $(OBJ)) $(OBJ_TEST) -o $@ $(CXXFLAGS)
-
-tests:	$(TESTER)
-	$(VALGRIND) ./$(TESTER)
-
 clean:
 	$(RM) $(BUILD_DIR)/*.o $(BUILD_DIR)/*.d
 
@@ -46,7 +36,7 @@ run: $(NAME)
 	@clear; ./$(NAME)
 
 leaks: $(NAME)
-	$(VALGRIND) ./$(NAME) a
+	$(VALGRIND) ./$(NAME)
 
 debug: CXXFLAGS = -std=c++98 -g
 debug: all
@@ -55,4 +45,4 @@ redebug: fclean debug
 
 -include $(DEP)
 
-.PHONY: all clean fclean rerun leaks debug redebug
+.PHONY: all clean fclean leaks debug redebug

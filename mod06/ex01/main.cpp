@@ -2,6 +2,7 @@
 
 int main(void)
 {
+	//pesquisar por aplicabilidade da serialização, pra mostrar na avaliação
 	t_Data			*data = new t_Data;
 	uintptr_t		serialize;
 	t_Data			*deserialize;
