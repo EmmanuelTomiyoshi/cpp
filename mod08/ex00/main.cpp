@@ -25,24 +25,29 @@ int main(void)
 	std::vector<double> vecDouble;
 	std::vector<std::string> vecString;
 
+	vecInt.reserve(8);
 	int result = 1;
-	for (size_t i = 0; i < 16; ++i)
+	for (size_t i = 0; i < 32; ++i)
 	{
 		result *= 2;
 		vecInt.push_back(result);
 	}
 
-	int target = 7;
+	int target = 8;
 
 	try
 	{
 		std::vector<int>::iterator found = easyfind(vecInt, target);
+		// std::vector<int>::const_iterator found = easyfind(vecInt, target);
 		std::cout << "Found " << target << " at position " << (found - vecInt.begin()) << std::endl;
 	}
 	catch (const std::runtime_error &e)
 	{
 		std::cerr << e.what() << std::endl;
 	}
+
+
+	//
 
 	for (std::vector<int>::iterator it = vecInt.begin(); it != vecInt.end(); ++it)
 	{
