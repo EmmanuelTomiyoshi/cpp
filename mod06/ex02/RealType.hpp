@@ -36,3 +36,9 @@ void identify(Base *p);
 void identify(Base &p);
 
 #endif // EX02_RealType_HPP
+
+
+
+// int a;
+// float b;
+// b = (float) a;
