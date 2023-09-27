@@ -1,0 +1,13 @@
+doctor, engineer, lawyer, teacher, accountant, nurse, artist, chef, pilot, 
+firefighter, musician, scientist, police officer, architect, farmer, 
+electrician, plumber, carpenter, journalist, actor, designer, pharmacist, 
+dentist, veterinarian, hairdresser, librarian, mechanic, salesperson, athlete, 
+astronaut, biologist, geologist, historian, mathematician, economist, 
+psychologist, sociologist, electrician, welder, construction worker, gardener, 
+therapist, paramedic, paramedic, therapist, gardener, construction worker, 
+welder, electrician, sociologist, psychologist, economist, mathematician, 
+historian, geologist, biologist, astronaut, athlete, salesperson, mechanic, 
+librarian, hairdresser, veterinarian, dentist, pharmacist, designer, actor, 
+journalist, carpenter, plumber, electrician, farmer, architect, police officer, 
+scientist, musician, firefighter, pilot, chef, artist, nurse, accountant, 
+teacher, lawyer, engineer, doctor.
