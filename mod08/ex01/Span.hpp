@@ -26,6 +26,15 @@ class Span
 		void	addNumber(int number);
 		int		shortestSpan(void);
 		int		longestSpan(void);
+		void	randomFill(void);
+
+		const std::vector<int>&getContainer(void) const;
+
+		template <typename Iterator>
+		void	addAllNumbersOnce(Iterator begin, Iterator end)
+		{
+			std::copy(begin, end, std::back_inserter(_container));
+		}
 
 	private:
 		std::vector<int>	_container;

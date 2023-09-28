@@ -2,8 +2,11 @@
 
 int main(void)
 {
-	Span sp = Span(5);
+	Span sp = Span(10000);
+	Span spTarget = Span();
 
+	sp.randomFill();
+	spTarget.addAllNumbersOnce((sp.getContainer()).begin(), (sp.getContainer()).end());
 
 	try
 	{

@@ -83,3 +83,19 @@ int Span::longestSpan(void)
 
 	return _container.back() - _container.front();
 }
+
+void Span::randomFill(void)
+{
+	std::srand(static_cast<unsigned int>(time(0)));
+
+	for (size_t i = 0; i < _maxCapacity; ++i)
+	{
+		int randomNumber = std::rand() % 800000 + 1;
+		_container.push_back(randomNumber);
+	}
+}
+
+const std::vector<int>&Span::getContainer(void) const
+{
+	return _container;
+}
