@@ -22,12 +22,10 @@ void	readFileAndStoreWords(const std::string &filename, std::vector<std::string>
 int main(void)
 {
 	std::vector<int> vecInt;
-	std::vector<double> vecDouble;
-	std::vector<std::string> vecString;
 
 	vecInt.reserve(8);
 	int result = 1;
-	for (size_t i = 0; i < 32; ++i)
+	for (size_t i = 0; i < 16; ++i)
 	{
 		result *= 2;
 		vecInt.push_back(result);

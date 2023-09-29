@@ -1,5 +1,7 @@
 #include "Span.hpp"
 
+const int Span::_minShortestSpan = 5;
+
 Span::Span(void) : _maxCapacity(0)
 {
 	if (SHOW_DEFAULT_MESSAGES)
@@ -88,14 +90,33 @@ void Span::randomFill(void)
 {
 	std::srand(static_cast<unsigned int>(time(0)));
 
-	for (size_t i = 0; i < _maxCapacity; ++i)
+	while(_container.size() < _maxCapacity)
 	{
 		int randomNumber = std::rand() % 800000 + 1;
-		_container.push_back(randomNumber);
+		if (isValidNumber(randomNumber))
+			_container.push_back(randomNumber);
 	}
 }
 
 const std::vector<int>&Span::getContainer(void) const
 {
 	return _container;
+}
+
+bool Span::isValidNumber(int number)
+{
+	if (_container.empty())
+		return true;
+
+	int minSpan = std::numeric_limits<int>::max();
+
+	for (size_t i = 0; i < _container.size(); ++i)
+	{
+		int span = std::abs(number - _container[i]);
+		if (span < minSpan)
+		{
+			minSpan = span;
+		}
+	}
+	return minSpan >= _minShortestSpan; //ensure the shortest span has a minimum distance of five;
 }

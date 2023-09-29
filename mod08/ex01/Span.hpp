@@ -1,5 +1,5 @@
-#ifndef EX00_EASYFIND_HPP
-#define EX00_EASYFIND_HPP
+#ifndef EX01_SPAN_HPP
+#define EX01_SPAN_HPP
 
 #include <iostream>
 #include <algorithm>
@@ -8,10 +8,6 @@
 #include <limits>
 
 #define SHOW_DEFAULT_MESSAGES 0
-
-// This class will have a member function called addNumber() to add a single number
-// to the Span. It will be used in order to fill it. Any attempt to add a new element if there
-// are already N elements stored should throw an exception.
 
 class Span
 {
@@ -28,6 +24,8 @@ class Span
 		int		longestSpan(void);
 		void	randomFill(void);
 
+		bool	isValidNumber(int number);
+
 		const std::vector<int>&getContainer(void) const;
 
 		template <typename Iterator>
@@ -39,7 +37,8 @@ class Span
 	private:
 		std::vector<int>	_container;
 		unsigned int		_maxCapacity;
+		static const int	_minShortestSpan;
 
 };
 
-#endif // EX00_EASYFIND_HPP
+#endif // EX01_SPAN_HPP
