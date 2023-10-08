@@ -6,7 +6,6 @@
 
 //2) stack
 
-
 int main(int argc, char **argv)
 {
 	if (argc != 2)
@@ -15,8 +14,16 @@ int main(int argc, char **argv)
 		return 1;
 	}
 
-
-	parse(std::string(argv[1]));
+	try
+	{
+		parse(std::string(argv[1]));
+	}
+	catch (const std::exception &e)
+	{
+		std::cerr << e.what() << std::endl;
+		return 1;
+	}
+	
 
 
 	// std::map<std::string, double> dateValue;

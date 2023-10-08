@@ -6,7 +6,10 @@
 #include <string>
 #include <algorithm>
 #include <sstream>
+#include <ctime>
 #include <map>
+
+#include "utils.cpp"
 
 #define SHOW_DEFAULT_MESSAGES 0
 
@@ -22,8 +25,8 @@ class BitcoinExchange
 		void readInputFile(std::string input_file);
 
 		// template <typename Iterator>
-
 	private:
+		std::map<std::string, float> dateValue;
 
 };
 
