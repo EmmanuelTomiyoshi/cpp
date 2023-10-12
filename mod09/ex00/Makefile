@@ -1,6 +1,6 @@
 NAME 		=	btc
 
-SRC 		=	main.cpp parse.cpp
+SRC 		=	main.cpp parse.cpp BitcoinExchange.cpp
 
 CXX 		=	c++
 CXXFLAGS 	=	-Wall -Wextra -Werror -std=c++98 -g
