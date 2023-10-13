@@ -1,5 +1,5 @@
-#ifndef EX01_BITCOINEXCHANGE_HPP
-#define EX01_BITCOINEXCHANGE_HPP
+#ifndef EX00_BITCOINEXCHANGE_HPP
+#define EX00_BITCOINEXCHANGE_HPP
 
 #include <iostream>
 #include <fstream>
@@ -59,4 +59,4 @@ bool	isLeapYear(unsigned int year);
 bool 	isValidValue(const std::string value);
 void	handleFileErrors(std::ifstream &inputFile);
 
-#endif // EX01_BITCOINEXCHANGE_HPP
+#endif // EX00_BITCOINEXCHANGE_HPP
