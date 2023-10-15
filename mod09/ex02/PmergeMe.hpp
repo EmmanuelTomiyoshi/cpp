@@ -9,7 +9,7 @@
 #include <cstdlib>
 
 #define SHOW_DEFAULT_MESSAGES	0
-#define THRESHOLD				20
+#define THRESHOLD				12
 
 class PmergeMe
 {
@@ -33,8 +33,8 @@ class PmergeMe
 		void mergeSort(int begin, int end);
 		void pend(void);
 
-		int		generateJacobsthalSequence(int n);
-		void	fillJacobsthalSequence(void);
+		int		generateJacobstahlSequence(int n);
+		void	fillJacobstahlSequence(void);
 
 		void	combinateJacob(void);
 		bool	isNumberInJacobSequence(int number);
@@ -44,7 +44,9 @@ class PmergeMe
 
 
 	private:
-		__pairVector						_vector;
+		__pairVector						_pairVector;
+
+		std::vector<int>					_vector;
 		std::vector<int>					_mainChain;
 		std::vector<int>					_pend;
 		std::vector<int>					_jacobSequence;
@@ -52,6 +54,7 @@ class PmergeMe
 
 		std::list<int> 						_list;
 		int									_struggler;
+		bool								_hasStruggler;
 
 };
 
