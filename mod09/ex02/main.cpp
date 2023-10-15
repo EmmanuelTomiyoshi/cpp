@@ -2,7 +2,7 @@
 
 int main(int const argc, char const *argv[])
 {
-	if (argc == 1)
+	if (argc <= 2)
 	{
 		std::cerr << "Error. Usage: ./PmergeMe <numbers>" << std::endl;
 		return 1;

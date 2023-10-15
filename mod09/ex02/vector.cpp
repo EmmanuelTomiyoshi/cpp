@@ -3,15 +3,6 @@
 /*
 ** Vector Operations
 */
-void PmergeMe::printVec(const std::string &state)
-{
-	std::cout << "Vector[" << _vector.size() << "] " << state << ": ";
-	for (std::vector<int>::iterator it = _vector.begin(); it != _vector.end(); ++it)
-	{
-		std::cout << *it << " ";
-	}
-	std::cout << std::endl;
-}
 
 void PmergeMe::swapLargerValueVec(void)
 {
@@ -87,51 +78,6 @@ void PmergeMe::pendVec(void)
 	_mainChainVec.insert(_mainChainVec.begin(), *_pendVec.begin());
 }
 
-int PmergeMe::generateJacobstahlSequenceVec(int index)
-{
-	if (index == 0)
-		return 0;
-	if (index == 1)
-		return (1);
-	return (generateJacobstahlSequenceVec(index - 1) + 2 * generateJacobstahlSequenceVec(index - 2));
-}
-
-void PmergeMe::fillJacobstahlSequenceVec(void)
-{
-	_jacobSequenceVec.push_back(0);
-	_jacobSequenceVec.push_back(1);
-	for (int i = 2; i < THRESHOLD; ++i)
-	{
-		_jacobSequenceVec.push_back(generateJacobstahlSequenceVec(i));
-	}
-}
-
-bool PmergeMe::isNumberInJacobSequenceVec(int number)
-{
-	for (std::vector<int>::iterator it = _jacobSequenceVec.begin(); it != _jacobSequenceVec.end(); ++it)
-	{
-		if (number == *it)
-			return true;
-	}
-	return false;
-}
-
-void PmergeMe::combinateJacobVec(void)
-{
-	for (int index = 3; index < THRESHOLD; index++)
-	{
-		int value = _jacobSequenceVec[index];
-		_combinatorVec.push_back(value);
-		value--;
-
-		while (!isNumberInJacobSequenceVec(value))
-		{
-			_combinatorVec.push_back(value);
-			value--;
-		}
-	}
-}
-
 int PmergeMe::binarySearchVec(int find)
 {
 	int left, right, middle;
@@ -154,7 +100,7 @@ int PmergeMe::binarySearchVec(int find)
 
 void PmergeMe::pushPendVec(void)
 {
-	for (std::vector<int>::iterator it = _combinatorVec.begin(); it != _combinatorVec.end(); ++it)
+	for (std::vector<int>::iterator it = _combinator.begin(); it != _combinator.end(); ++it)
 	{
 		int keep = *(it) - 1;
 		if (keep < static_cast<int>(_pendVec.size()))
@@ -172,26 +118,6 @@ void PmergeMe::pushPendVec(void)
 	}
 }
 
-void PmergeMe::checkArgs(int argc, char const *argv[])
-{
-	std::string str;
-	for (int i = 0; i < argc; ++i)
-	{
-		str = argv[i];
-		if (str[0] == '+')
-		{
-			str.erase(0, 1);	
-		}
-		for (int i = 0; i < static_cast<int>(str.size()); ++i)
-		{
-			if (!std::isdigit(str[i]))
-				throw std::runtime_error("Error");
-		}
-		if (std::atof(str.c_str()) > std::numeric_limits<int>::max())
-			throw std::runtime_error("Error");
-	}
-}
-
 void PmergeMe::updateVec(void)
 {
 	_vector.clear();
@@ -200,10 +126,4 @@ void PmergeMe::updateVec(void)
 	{
 		_vector.push_back(*it);
 	}
-}
-
-void PmergeMe::printTimeExecutionVec(void)
-{
-	double executionTimeMs = (static_cast<double>(_endTimeVec - _startTimeVec) / CLOCKS_PER_SEC * 1000000.0);
-	std::cout << "Time to process a range of " << _vector.size() << " elements with std::vector: " << executionTimeMs << "ms" << std::endl;
 }

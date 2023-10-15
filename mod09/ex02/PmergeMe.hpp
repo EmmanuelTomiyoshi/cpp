@@ -4,7 +4,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include <list>
+#include <deque>
 #include <limits>
 #include <cstdlib>
 #include <time.h>
@@ -14,8 +14,9 @@
 
 typedef std::vector<std::pair<int, int> >	__pairVector;
 typedef __pairVector::iterator				__vecIterator;
-typedef std::list<std::pair<int, int> >		__pairList;
-typedef __pairList::iterator				__listIterator;
+
+typedef std::deque<std::pair<int, int> >	__pairDeque;
+typedef __pairDeque::iterator				__deqIterator;
 
 class PmergeMe
 {
@@ -26,53 +27,68 @@ class PmergeMe
 		PmergeMe&operator=(const PmergeMe &copy);
 
 		void	pMergeMeAlgorithm(int argc, char const *argv[]);
+		void	printContainer(const std::string &state) const;
 		void	checkArgs(int argc, char const *argv[]);
 		void	fillContainers(int argc, char const *argv[]);
 		void	fillPairs(int argc, char const *argv[]);
-		void	sortVector();
+		void	fillJacobstahlSequence(void);
+		bool	isNumberInJacobSequence(int number);
+		int		generateJacobstahlSequence(int n);
+		void	combinateJacob(void);
+		void	sortVector(void);
+		void	sortDeque(void);
 
-
-		void	printVec(const std::string &state);
+		//vector functions
 		void	fillPairVec(int argc, char const *argv[]);
 		void	swapLargerValueVec(void);
 		void	mergeSortVec(int begin, int end);
 		void	mergeVec(int begin, int middle, int end);
 		void	pendVec(void);
-		void	fillJacobstahlSequenceVec(void);
-		int		generateJacobstahlSequenceVec(int n);
-		bool	isNumberInJacobSequenceVec(int number);
-		void	combinateJacobVec(void);
 		int		binarySearchVec(int find);
 		void	pushPendVec(void);
 		void	updateVec(void);
-		void	printTimeExecutionVec(void);
 
+		//vector functions
+		void	fillPairDeq(int argc, char const *argv[]);
+		void	swapLargerValueDeq(void);
+		void	mergeSortDeq(int begin, int end);
+		void	mergeDeq(int begin, int middle, int end);
+		void	pendDeq(void);
+		int		binarySearchDeq(int find);
+		void	pushPendDeq(void);
+		void	updateDeq(void);
+
+		//templates
+
+		template <typename T>
+		void printTimeExecution(T container, const std::string &type, clock_t _endTime, clock_t _startTime)
+		{
+			double executionTimeMs = (static_cast<double>(_endTime - _startTime) / CLOCKS_PER_SEC * 1000.0);
+			std::cout << "Time to process a range of " << container.size() << " elements with std::"
+			<< type << ": " << executionTimeMs << "ms" << std::endl;
+		}
 
 	private:
 		int									_struggler;
 		bool								_hasStruggler;
+		std::vector<int>					_jacobSequence;
+		std::vector<int>					_combinator;
 
 		//vector
 		__pairVector						_pairVec;
 		std::vector<int>					_vector;
 		std::vector<int>					_mainChainVec;
 		std::vector<int>					_pendVec;
-		std::vector<int>					_jacobSequenceVec;
-		std::vector<int>					_combinatorVec;
 		clock_t								_startTimeVec;
 		clock_t								_endTimeVec;
 
 		//list
-		__pairList							_pairLst;
-		std::list<int>						_list;
-		std::list<int>						_mainChainLst;
-		std::list<int>						_pendLst;
-		std::list<int>						_jacobSequenceLst;
-		std::list<int>						_combinatorLst;
-		int									_strugglerLst;
-		bool								_hasStrugglerLst;
-		clock_t								_startTimeLst;
-		clock_t								_endTimeLst;
+		__pairDeque							_pairDeq;
+		std::deque<int>						_deque;
+		std::deque<int>						_mainChainDeq;
+		std::deque<int>						_pendDeq;
+		clock_t								_startTimeDeq;
+		clock_t								_endTimeDeq;
 
 };
 
