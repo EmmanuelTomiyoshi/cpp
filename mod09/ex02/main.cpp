@@ -1,8 +1,5 @@
 #include "PmergeMe.hpp"
 
-//list
-//vector
-
 int main(int const argc, char const *argv[])
 {
 	if (argc == 1)
@@ -12,7 +9,6 @@ int main(int const argc, char const *argv[])
 	}
 
 	PmergeMe pm;
-
 
 	try
 	{
